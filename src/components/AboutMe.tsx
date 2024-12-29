@@ -13,8 +13,8 @@ const AboutMe = () => {
                     <div className='grid grid-cols-2 '>
                         <div className=' p-1 '>
                             <Card image='/aboutme.png'
-                                title='Hi, I’m Adrian Hajdin'
-                                detail='With 12 years of experience, I have honed my skills in both frontend and backend dev, creating dynamic and responsive websites. ' />
+                                title='Hi, I’m Shaffi Ahuja'
+                                detail='With 5 years of experience, I have honed my skills in frontend dev, creating dynamic and responsive websites. ' />
                         </div>
                         <div className=' p-1 '><Card
                             image='/techstack.png'
@@ -37,7 +37,7 @@ const AboutMe = () => {
                         <Card
                             image='/globalcontact.png'
                             title='I’m very flexible with time zone communications & locations'
-                            detail={`I'm based in Rjieka, Croatia and open to remote work worldwide.`}
+                            detail={`I'm based in Haryana, India and open to remote work worldwide.`}
                         />
                     </div>
                 </div>

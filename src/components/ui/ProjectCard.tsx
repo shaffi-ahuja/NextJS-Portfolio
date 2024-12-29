@@ -7,8 +7,8 @@ const ProjectCard = ({ icon, title, description, techstack, link }: { icon: stri
         <div className='border-zinc-700 border rounded-md p-5 lg:h-[400] md:h-[500] sm:h-[600] bg-gradient-to-t from-zinc-800 to-[#000] '>
             <div className='grid grid-rows-3'>
                 <div className='grid grid-row-2'>
-                    <Image src={icon} alt={title} height={100} width={100} />
-                    <h2 className='text-xl font-bold'>{title}</h2>
+                    <Image src={icon} alt={title} height={100} width={100} className='rounded-md border' />
+                    <h2 className='text-xl font-bold '>{title}</h2>
                 </div>
                 <div className='mt-2'>{description}</div>
                 <div className='grid grid-cols-2 gap-2 mt-10'>
