@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Project
 
-## Getting Started
+## Overview
+This is a personal portfolio website that showcases my journey, skills, and accomplishments. It is designed to be a visually appealing and user-friendly platform to provide a comprehensive view of my professional life.
 
-First, run the development server:
+### Current Sections
+- **Hero**: The landing section, creating a strong first impression with a brief introduction.
+- **AboutMe**: A detailed section about who I am, my skills, and my aspirations.
+- **Projects**: Highlights of the projects I have worked on, including descriptions and links.
+- **WorkExperience**: A summary of my professional experience, including roles, responsibilities, and achievements.
+- **ContactMe**: A way for visitors to get in touch with me through email or linked social media profiles in footer.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Future Additions
+- **Create Your Own Dream Portfolio**: A section to inspire and guide users to create their personalized portfolios.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development Stack
+- **Framework**: [Next.js](https://nextjs.org/) - A React-based framework that provides server-side rendering and static site generation for optimal performance.
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework used to create custom components from scratch with precise styling.
+- **Backend (Future)**: [Sanity](https://www.sanity.io/) - A headless CMS planned for managing and dynamically updating user details.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
+- Fully responsive design, ensuring seamless viewing on all devices.
+- Modern and clean UI built with Tailwind utility classes.
+- Modular and reusable components, improving scalability and maintainability.
+- Scalable backend plan with Sanity integration for dynamic content management.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/shaffi-ahuja/Portfolio.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd portfolio
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+5. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Learn More
+## Future Plans
+- Integrate Sanity CMS for dynamic content updates.
+- Add "Create Your Own Dream Portfolio" section to inspire and assist users.
+- Enhance the design with animations and interactive features.
+- Optimize for SEO and performance.
+- Add functionality for users to pick the color/theme of their portfolio.
+- Enable users to download resumes based on the details provided.
 
-To learn more about Next.js, take a look at the following resources:
+## Contributions
+Contributions are welcome! If you have ideas for improvement or find any issues, feel free to open a pull request or raise an issue in the repository.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Thank you for visiting my portfolio project! Feel free to explore and get in touch through the **ContactMe** section.

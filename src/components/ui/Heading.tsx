@@ -6,8 +6,8 @@ const Heading = ({
     children: React.ReactNode;
 }>) => {
     return (
-        <div className='p-4'>
-            <p className='text-2xl font-bold'>
+        <div className='p-4 pt-20'>
+            <p className='text-4xl font-bold'>
                 {children}
             </p>
         </div>

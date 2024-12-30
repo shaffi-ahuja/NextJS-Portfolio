@@ -4,10 +4,7 @@ import Heading from './ui/Heading'
 
 const AboutMe = () => {
     return (
-        <section className='px-10 bg-gradient-to-b from-zinc-800 to-[#000] ' id='AboutMe'>
-            <Heading>
-                About me
-            </Heading>
+        <section className='px-32 bg-gradient-to-b from-zinc-800 to-[#000] ' id='AboutMe'>
             <div className=' p-1  grid grid-cols-2 '>
                 <div className=' p-1  grid-rows-2'>
                     <div className='grid grid-cols-2 '>

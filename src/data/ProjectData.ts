@@ -8,20 +8,19 @@ export const ProjectData = {
       link: "https://pitch-project.vercel.app/",
     },
     {
-      icon: "/project2.png",
-      title: "CarePulse - Health Management System",
-      description: `An innovative healthcare platform designed to streamline essential medical processes. It simplifies patient registration, appointment scheduling, and medical record management, providing a seamless experience for both healthcare providers and patients.
-        
-        With a focus on efficiency, CarePulse integrantes complex forms and SMS notifications, by using Next.js, Appwrite, Twillio and Sentry that enhance operational workflows.`,
-      techstack: "React, Typescript, Tailwind",
-      link: "",
+      icon: "/camp.svg",
+      title: "HiLink - Travel Webpage",
+      description: `Built with Next.js, TailwindCSS, and TypeScript, this landing page not only looks great but also serves as a hands-on project to reinforce one's understanding of these technologies.
+
+      Includes Appealing Hero Section,Camp Exploration Section, Engaging Travel Guide Section,Feature-Rich Section,Call to Action for Mobile Apps,Footer etc.
+      `,
+      techstack: "Next, Typescript, Tailwind",
+      link: "https://travel-app-gold-nine.vercel.app/",
     },
     {
       icon: "/project3.png",
-      title: "LiveDoc - Real-Time Google Docs Clone",
-      description: `LiveDoc is a powerful collaborative app that elevates the capabilities of real-time document editing. As an enhanced version of Google Docs, It supports millions of collaborators simultaneously, ensuring that every change is captured instantly and accurately.
-        
-        With LiveDoc, users can experience the future of collaboration, where multiple contributors work together in real time without any lag, by using Next.js and Liveblocks newest features.`,
+      title: "Portfolio -  Let’s Build Your Dream Portfolio!",
+      description: "This is a personal portfolio website that showcases my journey, skills, and accomplishments. It is designed to be a visually appealing and user-friendly platform to provide a comprehensive view of my professional life. Future Additions- Create Your Own Dream Portfolio : A section to inspire and guide users to create their personalized portfolios.",
       techstack: "React, Typescript, Tailwind",
       link: "",
     },
