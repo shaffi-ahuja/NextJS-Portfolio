@@ -10,7 +10,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="flex gap-2 flex-2 h-15 py-5 px-32 bg-black sticky top-0 opacity-90">
+        <nav className="flex gap-2 flex-2 h-15 py-5 px-32 bg-black sticky top-0 ">
             <div className="text-2xl font-bold">
                 Shaffi Ahuja
             </div>

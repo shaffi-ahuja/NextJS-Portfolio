@@ -9,7 +9,7 @@ const AboutMe = () => {
                 <div className=' p-1  grid-rows-2'>
                     <div className='grid grid-cols-2 '>
                         <div className=' p-1 '>
-                            <Card image='/aboutme.png'
+                            <Card image='/aboutMeF.png'
                                 title='Hi, I’m Shaffi Ahuja'
                                 detail='With 5 years of experience, I have honed my skills in frontend dev, creating dynamic and responsive websites. ' />
                         </div>

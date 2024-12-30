@@ -4,9 +4,16 @@
 * Static with dummy data - **DONE**
 * Project Carousel functionality - **DONE**
 * My data in portfolio - **DONE**
-* Email functionality with toast on mail successfully sent
+* Toast on mail successfully sent
+
+Deploy v0
+
+
+* Email functionality
 * Make it responsive
+* Optimise Code
 * Icons for skillset
+
 
 Deploy v1
 
