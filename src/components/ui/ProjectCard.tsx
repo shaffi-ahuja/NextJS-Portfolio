@@ -1,18 +1,23 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import Skill from './Skill'
 
-const ProjectCard = ({ icon, title, description, techstack, link }: { icon: string, title: string, description: string, techstack: string, link: string }) => {
+const ProjectCard = ({ icon, title, description, techstack, link }: { icon: string, title: string, description: string, techstack: string[], link: string }) => {
     return (
-        <div className='border-zinc-700 border rounded-md p-5 lg:h-[400] md:h-[500] sm:h-[600] bg-gradient-to-t from-zinc-800 to-[#000] '>
-            <div className='grid grid-rows-3'>
-                <div className='grid grid-row-2'>
-                    <Image src={icon} alt={title} height={100} width={100} className='rounded-md border border-black' />
+        <div className='border-zinc-700 border rounded-md p-5 lg:h-[400] md:h-[500] sm:h-[600] bg-gradient-to-t from-zinc-800 to-[#000] pb-10'>
+            <div className='grid grid-rows-3 '>
+                <div className='grid grid-row-2 mb-3'>
+                    <Image src={icon} alt={title} height={100} width={100} className='rounded-md border border-black mb-3' />
                     <h2 className='text-xl font-bold '>{title}</h2>
                 </div>
                 <div className='mt-2'>{description}</div>
-                <div className='grid grid-cols-2 gap-2 mt-10'>
-                    <div>{techstack}</div>
+                <div className='grid grid-cols-2 gap-2 mt-5'>
+                    <div className="flex flex-row h-fit gap-1">
+                        {techstack.map((skill:string) => (
+                            <Skill label={skill} key={skill} />
+                        ))}
+                    </div>
                     <Link href={link}
                         className='flex justify-end cursor-pointer'>
                         Check Live Site

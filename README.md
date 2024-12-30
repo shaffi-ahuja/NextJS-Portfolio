@@ -54,9 +54,4 @@ This is a personal portfolio website that showcases my journey, skills, and acco
 ## Contributions
 Contributions are welcome! If you have ideas for improvement or find any issues, feel free to open a pull request or raise an issue in the repository.
 
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
 Thank you for visiting my portfolio project! Feel free to explore and get in touch through the **ContactMe** section.
