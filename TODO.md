@@ -9,11 +9,12 @@
 Deploy v0
 
 * Skill Specific Section - **DONE**
-* Email functionality
+* Email functionality - **DONE**
 * favicon
 * Make it responsive
 * Optimise Code
 * Icons for skillset
+* Try email form with next/form
 
 
 Deploy v1
