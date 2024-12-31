@@ -10,11 +10,11 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="flex gap-2 flex-2 h-15 py-5 px-32 bg-black sticky top-0 ">
-            <div className="text-2xl font-bold">
+        <nav className="flex gap-2 flex-2 sm:h-15 py-5 bg-black sticky top-0 xs:px-[35%] sm:px-8 lg:px-32">
+            <div className="sm:text-2xl font-bold text-xl">
                 Shaffi Ahuja
             </div>
-            <ul className="flex gap-5 grow justify-end text-lg text-zinc-400 ">
+            <ul className="sm:flex gap-5 grow justify-end text-lg text-zinc-400 hidden">
                 <li className="cursor-pointer">
                     <a href="/">Home</a>
                 </li>

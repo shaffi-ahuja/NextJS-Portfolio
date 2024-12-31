@@ -20,9 +20,9 @@ const Projects = () => {
     index >= projects - 2 && index <= projects - 1 && setIndex((prevIndex) => prevIndex - 1);
   }
   return (
-    <section className='px-32 bg-black ' id='Projects'>
+    <section className='xl:px-32 lg:px-24 md:px-16 px-8 bg-black ' id='Projects'>
       <Heading>
-        My Selected Work
+        My Work
       </Heading>
       <div >
         <Carousel onNext={nextClickHandler} onPrev={prevClickHandler} index={index}>

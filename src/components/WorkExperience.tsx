@@ -6,26 +6,22 @@ import { WorkData } from '@/data/WorkExperienceData'
 const WorkExperience = () => {
   const workhistory = WorkData.data;
   return (
-    <section className='px-32 bg-black'>
+    <section className='xl:px-32 lg:px-24 md:px-16 px-8 bg-black'>
       <Heading>
         My Work Experience
       </Heading>
-      <div className='flex flex-row px-4 mt-10'>
-        <div className='basis-1/3'>
-        {/* Any Image */}
-        </div>
-        <div className='basis-2/3 flex flex-col'>
-          {workhistory.map((data) =>
-            <WorkCard
-              key={data.id}
-              image={data.image}
-              company={data.company}
-              title={data.title}
-              duration={data.duration}
-              description={data.description}
-            />)}
+      <div className=' px-4 mt-10'>
 
-        </div>
+        {workhistory.map((data) =>
+          <WorkCard
+            key={data.id}
+            image={data.image}
+            company={data.company}
+            title={data.title}
+            duration={data.duration}
+            description={data.description}
+          />)}
+
       </div>
 
     </section>
