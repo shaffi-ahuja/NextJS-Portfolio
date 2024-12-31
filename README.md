@@ -3,6 +3,10 @@
 ## Overview
 This is a personal portfolio website that showcases my journey, skills, and accomplishments. It is designed to be a visually appealing and user-friendly platform to provide a comprehensive view of my professional life.
 
+TechStack - 
+
+![My Skills](https://skillicons.dev/icons?i=react,typescript,javascript,html,css,next,bootstrap,tailwindcss,git,figma)
+
 ### Current Sections
 - **Hero**: The landing section, creating a strong first impression with a brief introduction.
 - **AboutMe**: A detailed section about who I am, my skills, and my aspirations.

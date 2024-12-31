@@ -1,17 +1,15 @@
 import React from 'react'
 import Card from './ui/Card'
 import Link from 'next/link'
-import Skill from './ui/Skill'
-
-const Skills = ['React', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Next.js', 'Redux', 'MUI', 'Bootstrap', 'SCSS', 'Tailwind CSS', 'Git', 'Figma'];
-
+import SkillCard from './ui/SkillCard';
+const Skills = ['react', 'typescript', 'javascript', 'html', 'css', 'next', 'redux', 'mui', 'bootstrap', 'tailwind', 'git', 'figma'];
 const AboutMe = () => {
     return (
         <section
             className="px-32 bg-gradient-to-b from-zinc-800 to-[#000]"
             id="AboutMe"
         >
-            <div className="p-1 grid grid-cols-3 gap-4">
+            <div className="p-1 grid grid-cols-3 gap-10">
                 {/* Left Column */}
                 <div className="grid grid-rows-2 col-span-2 gap-4">
                     <div className="grid grid-cols-2 gap-4">
@@ -42,19 +40,10 @@ const AboutMe = () => {
                 {/* Right Column */}
                 <div className="grid grid-rows-3 gap-4">
                     <div className='row-span-2'>
-                        <Card
-                            image="/techstack.png"
+                        <SkillCard
+                            skills={Skills}
                             title="Tech Stack"
-                            detail={
-                                <>
-                                    <div className="text-md mb-2">I specialize in a variety of languages, frameworks, and tools that allow me to build robust and scalable applications </div>
-                                    <div className="flex flex-wrap gap-2">
-                                        {Skills.map((skill) => (
-                                            <Skill label={skill} key={skill} />
-                                        ))}
-                                    </div>
-                                </>
-                            }
+                            detail="I specialize in a variety of languages, frameworks, and tools that allow me to build robust and scalable applications. "
                         />
                     </div>
                     <div>
@@ -71,7 +60,7 @@ const AboutMe = () => {
                                         shaffi.ahuja@gmail.com
                                     </Link>
                                 </div>
-                                
+
                             }
                         />
                     </div>

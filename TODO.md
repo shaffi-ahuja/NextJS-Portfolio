@@ -10,26 +10,25 @@ Deploy v0
 
 * Skill Specific Section - **DONE**
 * Email functionality - **DONE**
-* favicon
+* favicon - **DONE**
+* Work Experience - pointers -  **DONE**
 * Make it responsive
+* Add light/dark mode
 * Optimise Code
-* Icons for skillset
+* Icons for skillset - **DONE**
 * Try email form with next/form
 
 
 Deploy v1
 
 ## Future plans
-* Add light/dark mode
+
+* User Form
+* User portfolio
 
 Deploy v2
 
-* User Form\
-* User portfolio
-
-Deploy v3
-
-* Color theme\
+* Color theme
 * Download resume from data provided
 
-Deploy v4
+Deploy v3

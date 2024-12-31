@@ -1,7 +1,7 @@
 export const ProjectData = {
   projects: [
     {
-      icon: "/camp.svg",
+      icon: "/hilink.svg",
       title: "HiLink - Travel Webpage",
       description: `Built with Next.js, TailwindCSS, and TypeScript, this landing page not only looks great but also serves as a hands-on project to reinforce one's understanding of these technologies.
 
@@ -11,7 +11,7 @@ export const ProjectData = {
       link: "https://travel-app-gold-nine.vercel.app/",
     },
     {
-      icon: "/pitchIcon.png",
+      icon: "/pitch.png",
       title: "Pitch - Startup Directory Platform",
       description: `A Next.js 15 platform where entrepreneurs can submit their startup ideas for virtual pitch competitions, browse other pitches, and gain exposure through a clean minimalistic design for a smooth user experience having Live Content API, GitHub Authentication,Pitch Submission,View Pitches,Pitch Details Page,Profile Page,Editor Picks,Views Counter,Search,Minimalistic Design`,
       techstack: ["Typescript", "Tailwind", "React 19", "Next.js 15", "Sanity"],
