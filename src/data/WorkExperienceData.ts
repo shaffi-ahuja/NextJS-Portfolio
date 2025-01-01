@@ -2,8 +2,8 @@ export const WorkData = {
   data: [
     {
       id: 1,
-      image: "/vercel.svg",
-      company: "Publicis",
+      image: "/publicisresources_logo.jpeg",
+      company: "Publicis Re:Sources",
       title: "Associate L2",
       duration: "November 2023 - Present",
       description: `Worked on modifying existing in house application dynamic to support multi-tenancy.
@@ -15,7 +15,7 @@ Worked on migrating existing Next.js application to Micro frontend architecture 
   },
     {
       id: 2,
-      image: "/vercel.svg",
+      image: "/hcltech_logo.jpeg",
       company: "HCL",
       title: "Senior Software Engineer ",
       duration: "January 2022 - November 2023",
@@ -27,13 +27,13 @@ Followed Agile practices and performed code reviews to ensure quality.`,
     },
     {
       id: 3,
-      image: "/vercel.svg",
+      image: "/wipro_logo.jpeg",
       company: "Wipro",
       title: "Project Engineer ",
       duration: "August 2019 - January 2022",
       description: `Developed and maintained web applications for Wipro’s in-house product, devNXT.
 Worked directly with clients to gather requirements and  ensure user experience consistency.
-Built and maintained responsive web apps, dashboards, and analytics for clients like NHS, UBS, Citi, Oracle, and Olympus.
+Built and maintained responsive web apps, dashboards, and analytics for clients.
 Participated in Agile sprints and testing for bug fixes and feature enhancements.`,
     },
   ],

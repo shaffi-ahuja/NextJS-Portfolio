@@ -13,13 +13,13 @@ const Carousel = ({ children, onPrev, onNext, index }: any) => {
     return (
         <div className=''>
             <div className='p-3 flex flex-cols-3 '>
-                <div className='mr-5 content-center '>
+                <div className='sm:mr-5 mr-2 content-center '>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke={index == 0 ? '#1f2937' : "currentColor"} className={`size-7  block border rounded-full p-1 ${index == 0 ? 'border-gray-800' : 'cursor-pointer'}`} onClick={() => onPrev()}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                     </svg>
                 </div>
                 {children}
-                <div className='ml-5 content-center'>
+                <div className='ml-2 sm:ml-5 content-center'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke={index == 2 ? '#1f2937' : "currentColor"} className={`size-7  block border rounded-full p-1 ${index == 2 ? 'border-gray-800' : 'cursor-pointer'}`} onClick={() => onNext()} >
                         <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>

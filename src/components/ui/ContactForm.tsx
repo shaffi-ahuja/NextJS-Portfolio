@@ -89,7 +89,7 @@ const ContactForm = () => {
                     <textarea
                         id="message"
                         name="message"
-                        className="border border-zinc-600 bg-zinc-900 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-700"
+                        className="border border-zinc-600 bg-zinc-900 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-700 xs:h-40"
                         placeholder="Share your thoughts or enquiries"
                         required
                     />

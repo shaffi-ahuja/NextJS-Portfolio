@@ -5,9 +5,6 @@
 * Project Carousel functionality - **DONE**
 * My data in portfolio - **DONE**
 * Toast on mail successfully sent - **DONE**
-
-Deploy v0
-
 * Skill Specific Section - **DONE**
 * Email functionality - **DONE**
 * favicon - **DONE**
