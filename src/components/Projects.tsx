@@ -20,7 +20,7 @@ const Projects = () => {
     index >= projects - 2 && index <= projects - 1 && setIndex((prevIndex) => prevIndex - 1);
   }
   return (
-    <section className='xl:px-32 lg:px-24 md:px-16 px-8 xs:px-2 bg-black ' id='Projects'>
+    <section className='xl:px-32 lg:px-24 md:px-16 px-8 xs:px-2 ' id='Projects'>
       <Heading>
         My Recent Work
       </Heading>

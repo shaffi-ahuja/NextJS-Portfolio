@@ -6,7 +6,7 @@ const Skills = ['react', 'typescript', 'javascript', 'html', 'css', 'next', 'red
 const About = () => {
     return (
         <section
-            className="xl:px-32 lg:px-24 md:px-16 px-8 bg-gradient-to-b from-zinc-800 to-[#000]"
+            className="xl:px-32 lg:px-24 md:px-16 px-8 "
             id="AboutMe"
         >
             <div className="p-1 grid grid-cols-1 xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 gap-5">

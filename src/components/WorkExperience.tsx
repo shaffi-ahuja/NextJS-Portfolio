@@ -6,7 +6,7 @@ import { WorkData } from '@/data/WorkExperienceData'
 const WorkExperience = () => {
   const workhistory = WorkData.data;
   return (
-    <section className='xl:px-32 lg:px-24 md:px-16 px-8 bg-black'>
+    <section className='xl:px-32 lg:px-24 md:px-16 px-8 xs:px-2 '>
       <Heading>
         My Work Experience
       </Heading>

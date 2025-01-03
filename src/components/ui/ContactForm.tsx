@@ -46,7 +46,7 @@ const ContactForm = () => {
     };
 
     return (
-        <div className="mx-auto mt-10 justify-items-center w-1/2">
+        <div className="mx-auto mt-10 justify-items-center sm:w-2/3 lg:w-1/3 xs:w-full xs:px-10">
             {showToast && (
                 <Toast
                     message="Email has been successfully sent!"
@@ -67,7 +67,7 @@ const ContactForm = () => {
                     <input
                         id="name"
                         name="name"
-                        className="border border-zinc-600 bg-zinc-900 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-700"
+                        className="border border-zinc-700 bg-zinc-900 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-700"
                         placeholder="ex: john doe"
                         type="text"
                         required
@@ -78,7 +78,7 @@ const ContactForm = () => {
                     <input
                         id="email"
                         name="email"
-                        className="border border-zinc-600 bg-zinc-900 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-700"
+                        className="border border-zinc-700 bg-zinc-900 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-700"
                         placeholder="ex: john.doe@gmail.com"
                         type="email"
                         required
@@ -89,7 +89,7 @@ const ContactForm = () => {
                     <textarea
                         id="message"
                         name="message"
-                        className="border border-zinc-600 bg-zinc-900 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-700 xs:h-40"
+                        className="border border-zinc-700 bg-zinc-900 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-700 xs:h-40"
                         placeholder="Share your thoughts or enquiries"
                         required
                     />

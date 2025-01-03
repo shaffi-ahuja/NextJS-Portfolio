@@ -5,8 +5,8 @@ import ContactForm from './ui/ContactForm'
 
 const ContactMe = () => {
   return (
-    <section className='xl:px-32 lg:px-24 md:px-16 px-8 pt-10 bg-black' id='ContactMe'>
-      <div className=' border border-zinc-800 rounded-3xl pb-6'>
+    <section className='xl:px-32 lg:px-24 md:px-16 px-8 pt-10 ' id='ContactMe'>
+      <div className=' border border-zinc-800 rounded-xl pb-6'>
         <Image src="/contactMeHeader.png"
           alt='Contact'
           height={10}

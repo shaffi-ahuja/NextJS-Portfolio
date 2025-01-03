@@ -9,11 +9,16 @@ export default {
   theme: {
     extend: {
       screens: {
-        xs: {  max: "639px" },
+        xs: { max: "639px" },
       },
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      keyframes: {
+        wave: {
+          "0%, 100%": { transform: "rotate(0deg)" },
+          "50%": { transform: "rotate(20deg)" },
+        },
+      },
+      animation: {
+        wave: "wave 1s ease-in-out infinite",
       },
     },
   },

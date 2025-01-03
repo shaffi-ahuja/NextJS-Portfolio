@@ -5,10 +5,10 @@ import Skill from './Skill'
 
 const ProjectCard = ({ icon, title, description, techstack, link }: { icon: string, title: string, description: string, techstack: string[], link: string }) => {
     return (
-        <div className='border-zinc-700 border rounded-md p-5 lg:h-[400] md:h-[420] sm:h-[470] xs:h-fit bg-gradient-to-t from-zinc-800 to-[#000] pb-10'>
+        <div className='border-zinc-800 border rounded-md p-5 lg:h-[400] md:h-[420] sm:h-[470] xs:h-fit bg-zinc-900 pb-10'>
             <div className='flex flex-col'>
                 <div className='flex flex-col mb-3'>
-                    <Image src={icon} alt={title} height={100} width={100} className='rounded-md border border-black mb-3' />
+                    <Image src={icon} alt={title} height={100} width={100} className='rounded-md  mb-3' />
                     <h2 className='text-xl font-bold '>{title}</h2>
                 </div>
                 <div className='mt-2 '>{description}</div>
