@@ -15,19 +15,19 @@ const Carousel = ({ children, onPrev, onNext, index }: any) => {
 
     return (
         <>
-            <div className='p-3 flex flex-cols-3 '>
-                <div className='sm:mr-5 mr-2 content-center '>
-                    <AiOutlineLeftCircle className={`size-10  block p-1 ${index == 0 ? 'fill-gray-800' : 'cursor-pointer'}`}
+            <div className='carousel-container'>
+                <div className='left-arrow-container'>
+                    <AiOutlineLeftCircle className={`arrow ${index == 0 ? 'fill-gray-800' : 'cursor-pointer'}`}
                         onClick={() => onPrev()}
                     />
                 </div>
                 {children}
-                <div className='ml-2 sm:ml-5 content-center'>
-                    <AiOutlineRightCircle className={`size-10 block p-1 ${index == 2 ? 'fill-gray-800' : 'cursor-pointer'}`} onClick={() => onNext()} />
+                <div className='right-arrow-container'>
+                    <AiOutlineRightCircle className={`arrow ${index == 2 ? 'fill-gray-800' : 'cursor-pointer'}`} onClick={() => onNext()} />
                 </div>
             </div>
 
-            <div className=' mt-5 flex justify-center gap-2 '>
+            <div className='dots-container'>
                 <PiCircleFill className={`size-4 ${index == 0 ? "fill-current" : "fill-[#808080]"}`} />
                 <PiCircleFill className={`size-4 ${index == 1 ? "fill-current" : "fill-[#808080]"}`} />
                 <PiCircleFill className={`size-4 ${index == 2 ? "fill-current" : "fill-[#808080]"}`} />

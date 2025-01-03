@@ -5,8 +5,132 @@
 * {
   scroll-behavior: smooth;
 }
+@layer utilities {
+  .card {
+    @apply border-zinc-800 border rounded-md py-2 h-full flex flex-col px-3;
+  }
 
-.card{
-  @apply border-zinc-800 border rounded-md py-2 h-full flex flex-col;
+  .card-image-div {
+    @apply flex-grow -mb-24 xs:-mb-10;
+  }
+  .card-image {
+    @apply mx-auto w-full xs:mb-1;
+  }
+
+  .card-title {
+    @apply text-xl font-bold mb-3;
+  }
+
+  .skill-card-image-div {
+    @apply flex flex-wrap gap-10 p-5 xs:gap-5 xs:p-7 justify-center;
+  }
+
+  .carousel-container {
+    @apply p-3 flex;
+  }
+
+  .left-arrow-container {
+    @apply sm:mr-5 mr-2 content-center;
+  }
+
+  .arrow {
+    @apply size-10 block p-1;
+  }
+
+  .right-arrow-container {
+    @apply ml-2 sm:ml-5 content-center;
+  }
+
+  .dots-container {
+    @apply mt-5 flex justify-center gap-2;
+  }
+
+  .form-container {
+    @apply mx-auto mt-10 justify-items-center sm:w-2/3 xl:w-1/3 xs:w-full xs:px-10;
+  }
+
+  .form-heading {
+    @apply text-3xl font-bold mb-3;
+  }
+
+  .form {
+    @apply mt-10 w-full;
+  }
+
+  .input-div {
+    @apply mt-5 flex flex-col;
+  }
+
+  .input {
+    @apply border border-zinc-700 bg-zinc-900 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-700;
+  }
+
+  .button {
+    @apply border border-zinc-900 bg-zinc-600 px-5 py-4 rounded-md mt-3 flex items-center justify-center hover:bg-zinc-700;
+  }
+  .go-to-arrow {
+    @apply size-3 ml-1;
+  }
+
+  .section-heading {
+    @apply p-4 pt-20 text-4xl font-bold;
+  }
+
+  .project-card-container {
+    @apply border-zinc-800 border rounded-md p-5 lg:h-[400] md:h-[420] sm:h-[470] xs:h-fit bg-zinc-900 pb-10;
+  }
+  .toast {
+    @apply border rounded-md w-fit p-3 h-fit px-10 fixed right-5 bottom-16 text-center content-center text-lg;
+  }
+  .success-toast {
+    @apply border-cyan-700 bg-cyan-700;
+  }
+  .error-toast {
+    @apply border-red-700 bg-red-700;
+  }
+  .company-logo {
+    @apply basis-1/12 mr-2 justify-items-center;
+  }
+  .work-exp-desc-list {
+    @apply text-gray-400 my-3 list-disc;
+  }
+  .section-container {
+    @apply xl:px-32 lg:px-24 md:px-16 px-8 xs:px-2;
+  }
+  .about-me-grid {
+    @apply p-1 grid grid-cols-1 xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 gap-5;
+  }
+  .mail-header-image {
+    @apply border border-zinc-800 rounded-xl pb-6;
+  }
+  .footer-grid {
+    @apply flex md:flex-row md:justify-between flex-col gap-5 items-center;
+  }
+  .footer-icons {
+    @apply text-zinc-600 size-6;
+  }
+  .hero-section-heading {
+    @apply text-2xl md:text-3xl sm:text-2xl;
+  }
+  .hero-section-sub-heading {
+    @apply text-xl md:text-4xl mt-3 sm:text-3xl;
+  }
+  .hero-section-button {
+    @apply border border-zinc-900 bg-zinc-800 px-5 py-3 rounded-md mt-10 flex items-center justify-center hover:bg-zinc-900 font-bold;
+  }
+  .animate-ping-green {
+    @apply animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75;
+  }
+  .ping-green {
+    @apply relative inline-flex rounded-full h-3 w-3 bg-green-500;
+  }
+  .navbar {
+    @apply flex gap-2 sm:h-16 py-5 sticky top-0 xs:justify-center sm:px-8 lg:px-32 bg-black z-10;
+  }
+  .nav-logo {
+    @apply sm:text-2xl font-bold text-xl;
+  }
+  .nav-links {
+    @apply sm:flex gap-5 grow justify-end text-lg text-zinc-400 hidden;
+  }
 }
-

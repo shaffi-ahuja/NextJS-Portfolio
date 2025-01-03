@@ -12,7 +12,7 @@
 * Make it responsive -  **DONE**
 * Icons for skillset - **DONE**
 * Add light/dark mode
-* Optimise Code
+* Optimise Code - **DONE**
 * Try email form with next/form
 
 ## Future plans

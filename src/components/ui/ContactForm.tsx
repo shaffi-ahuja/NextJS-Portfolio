@@ -4,6 +4,9 @@
 import Toast from './Toast';
 import { FormEvent, useState } from 'react';
 import { sendMail } from '../../pages/api/sendEmail';
+import { BiArrowFromRight, BiRightTopArrowCircle } from 'react-icons/bi';
+import { BsArrowClockwise, BsArrowUp } from 'react-icons/bs';
+import { LuLink } from 'react-icons/lu';
 
 const ContactForm = () => {
     const [pending, setPending] = useState(false);
@@ -46,58 +49,58 @@ const ContactForm = () => {
     };
 
     return (
-        <div className="mx-auto mt-10 justify-items-center sm:w-2/3 lg:w-1/3 xs:w-full xs:px-10">
+        <div className="form-container">
             {showToast && (
                 <Toast
                     message="Email has been successfully sent!"
                     variant="success"
                 />
             )}
-            <p className="text-3xl font-bold mb-3">Let’s talk</p>
+            <p className="form-heading">Let’s talk</p>
             <p>
                 Whether you’re looking to build a new website, improve your existing platform, or bring a unique project to life, I’m here to help.
             </p>
 
             <form
                 onSubmit={submitHandler}
-                className="mt-10 w-full"
+                className="form"
             >
-                <div className="mt-5 flex flex-col">
+                <div className="input-div">
                     <label htmlFor="name">Full Name</label>
                     <input
                         id="name"
                         name="name"
-                        className="border border-zinc-700 bg-zinc-900 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-700"
+                        className="input"
                         placeholder="ex: john doe"
                         type="text"
                         required
                     />
                 </div>
-                <div className="mt-5 flex flex-col">
+                <div className="input-div">
                     <label htmlFor="email">Email address</label>
                     <input
                         id="email"
                         name="email"
-                        className="border border-zinc-700 bg-zinc-900 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-700"
+                        className="input"
                         placeholder="ex: john.doe@gmail.com"
                         type="email"
                         required
                     />
                 </div>
-                <div className="mt-5 flex flex-col">
+                <div className="input-div">
                     <label htmlFor="message">Your Message</label>
                     <textarea
                         id="message"
                         name="message"
-                        className="border border-zinc-700 bg-zinc-900 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-700 xs:h-40"
+                        className="input xs:h-40"
                         placeholder="Share your thoughts or enquiries"
                         required
                     />
                 </div>
 
-                <div className="mt-5 flex flex-col">
+                <div className="input-div">
                     <button
-                        className={`border border-zinc-900 bg-zinc-600 px-5 py-4 rounded-md mt-3 flex items-center justify-center hover:bg-zinc-700 ${pending && 'cursor-not-allowed opacity-50'
+                        className={`button ${pending && 'cursor-not-allowed opacity-50'
                             }`}
                         type="submit"
                         disabled={pending}
@@ -105,13 +108,14 @@ const ContactForm = () => {
                         {!pending ? (
                             <>
                                 <span>Send message</span>
+
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     strokeWidth={1.5}
                                     stroke="currentColor"
-                                    className="size-3 ml-1"
+                                    className="go-to-arrow"
                                 >
                                     <path
                                         strokeLinecap="round"

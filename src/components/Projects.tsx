@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react'
 import ProjectCard from './ui/ProjectCard'
-import Heading from './ui/Heading'
 import { ProjectData } from '@/data/ProjectData'
 import Carousel from './ui/Carousel'
 
@@ -20,10 +19,10 @@ const Projects = () => {
     index >= projects - 2 && index <= projects - 1 && setIndex((prevIndex) => prevIndex - 1);
   }
   return (
-    <section className='xl:px-32 lg:px-24 md:px-16 px-8 xs:px-2 ' id='Projects'>
-      <Heading>
+    <section className='section-container' id='Projects'>
+      <h1 className='section-heading'>
         My Recent Work
-      </Heading>
+      </h1>
       <div >
         <Carousel onNext={nextClickHandler} onPrev={prevClickHandler} index={index}>
           <ProjectCard

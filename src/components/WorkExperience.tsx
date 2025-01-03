@@ -1,17 +1,15 @@
 import React from 'react'
-import Heading from './ui/Heading'
 import WorkCard from './ui/WorkCard'
 import { WorkData } from '@/data/WorkExperienceData'
 
 const WorkExperience = () => {
   const workhistory = WorkData.data;
   return (
-    <section className='xl:px-32 lg:px-24 md:px-16 px-8 xs:px-2 '>
-      <Heading>
+    <section className='section-container'>
+      <h1 className='section-heading'>
         My Work Experience
-      </Heading>
+      </h1>
       <div className=' px-4 mt-10'>
-
         {workhistory.map((data) =>
           <WorkCard
             key={data.id}

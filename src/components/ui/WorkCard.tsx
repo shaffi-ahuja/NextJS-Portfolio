@@ -3,9 +3,9 @@ import Image from 'next/image'
 
 const WorkCard = ({ image, company, title, duration, description }: { image: string, company: string, title: string, duration: string, description: string }) => {
     return (
-        <div className='flex flex-cols'>
-            <div className='basis-1/12 mr-3 justify-items-center'>
-                <Image src={image} alt='project1' width={30} height={30} className=' rounded-md' />
+        <div className='flex flex-row'>
+            <div className='company-logo'>
+                <Image src={image} alt='project1' width={30} height={30} className='rounded-md' />
             </div>
 
             <div className='basis-11/12'>
@@ -15,7 +15,7 @@ const WorkCard = ({ image, company, title, duration, description }: { image: str
                         {title}
                     </span> - {duration}
                 </p>
-                <ul className='text-gray-400 my-3 list-disc'>
+                <ul className='work-exp-desc-list'>
                     {description.split('\n').map((pointer, i) =>
                         <li key={i}>{pointer}
                         </li>
