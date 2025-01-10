@@ -17,8 +17,15 @@
 
 ## Future plans
 
-* User Form
-* User portfolio
+* User Form - single page UI- **DONE**
+* Turn my hardcoded data into mock files
+* User Form - Save Data in DB 
+
+* User Form - multiple sections UI 
+* User portfolio launch
 
 * Color theme
 * Download resume from data provided
+
+* Use ShadCN
+

@@ -134,3 +134,7 @@
     @apply sm:flex gap-5 grow justify-end text-lg text-zinc-400 hidden;
   }
 }
+
+.user-form-container {
+  @apply mx-auto mt-10 justify-items-center w-2/3 xs:px-10;
+}
