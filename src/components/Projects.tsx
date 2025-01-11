@@ -2,16 +2,15 @@
 
 import React, { useState } from 'react'
 import ProjectCard from './ui/ProjectCard'
-import { ProjectData } from '@/data/ProjectData'
-import Carousel from './ui/Carousel'
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel'
 
-const Projects = () => {
+const Projects = ({ data }: { data: any }) => {
 
-  const projects = ProjectData.projects.length;
-  const [index, setIndex] = useState(1);
+  const projects = data.length;
+  const [index, setIndex] = useState(Math.floor(projects / 2));
   // Set state at middle index
   // Keeping projects as top 3 projects for now
-  const project = ProjectData.projects[index];
+  // const project = data[index];
   const nextClickHandler = () => {
     index >= 0 && index < projects - 1 && setIndex((prevIndex) => prevIndex + 1);
   }
@@ -23,7 +22,28 @@ const Projects = () => {
       <h1 className='section-heading'>
         My Recent Work
       </h1>
-      <div >
+<div className='px-10'>
+      <Carousel className='carousel-container'>
+        <CarouselContent>
+          {data.map((project: any) =>
+            <CarouselItem>
+              <ProjectCard
+                key={project.title}
+                icon={project.icon}
+                title={project.title}
+                description={project.description}
+                techstack={project.techstack}
+                link={project.link}
+              />
+            </CarouselItem>)
+          }
+
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+      </div>
+      {/* <div >
         <Carousel onNext={nextClickHandler} onPrev={prevClickHandler} index={index}>
           <ProjectCard
             icon={project.icon}
@@ -33,8 +53,8 @@ const Projects = () => {
             link={project.link}
           />
         </Carousel>
- 
-      </div>
+
+      </div> */}
     </section>
   )
 }

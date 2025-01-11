@@ -26,7 +26,7 @@
   }
 
   .carousel-container {
-    @apply p-3 flex;
+    @apply px-2 py-4 flex;
   }
 
   .left-arrow-container {
@@ -42,7 +42,7 @@
   }
 
   .dots-container {
-    @apply mt-5 flex justify-center gap-2;
+    @apply mt-3 flex justify-center gap-2;
   }
 
   .form-container {
@@ -62,7 +62,7 @@
   }
 
   .input {
-    @apply border border-zinc-300 bg-zinc-200 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-400;
+    @apply border border-zinc-300 bg-zinc-200 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-400 dark:border-zinc-700 dark:bg-zinc-900;
   }
 
   .button {
@@ -78,7 +78,7 @@
   }
 
   .project-card-container {
-    @apply border-zinc-300 border rounded-md p-5 lg:h-[400] md:h-[420] sm:h-[470] xs:h-fit  pb-10;
+    @apply border-zinc-300 border rounded-md p-5 h-fit pb-10;
   }
   .toast {
     @apply border rounded-md w-fit p-3 h-fit px-10 fixed right-5 bottom-16 text-center content-center text-lg;
@@ -126,7 +126,7 @@
     @apply relative inline-flex rounded-full h-3 w-3 bg-green-500;
   }
   .navbar {
-    @apply flex gap-2 sm:h-16 py-5 sticky top-0 xs:justify-center sm:px-8 lg:px-32 bg-black dark:bg-white z-20;
+    @apply flex gap-2 sm:h-16 py-5 sticky top-0 xs:justify-center sm:px-8 lg:px-32 bg-white dark:bg-black z-20;
   }
   .nav-logo {
     @apply sm:text-2xl font-bold text-xl;
@@ -138,4 +138,69 @@
 
 .user-form-container {
   @apply mx-auto mt-10 justify-items-center w-2/3 xs:px-10;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

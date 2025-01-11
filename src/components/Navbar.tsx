@@ -4,12 +4,13 @@ import Link from "next/link";
 import React from "react";
 import ToggleButton from "../components/ui/ToggleButton";
 
-const Navbar = () => {
+const Navbar = ({ data }: { data: any }) => {
 
     return (
         <nav className="navbar">
             <Link className="nav-logo" href="/">
-                Shaffi Ahuja
+                {data.FirstName}
+                {data.LastName}
             </Link>
             <ul className="nav-links">
                 <li>

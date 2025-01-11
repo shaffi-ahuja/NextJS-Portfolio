@@ -2,13 +2,13 @@
 import React, { useState } from 'react';
 import MultiSelect from "../components/ui/MultiSelect";
 
-const skills = ['react', 'typescript', 'javascript', 'html', 'css', 'next', 'redux', 'mui', 'bootstrap', 'tailwind', 'git', 'figma'];
+const skills = ['react', 'typescript', 'javascript', 'html', 'css', 'next', 'redux', 'mui', 'bootstrap', 'tailwind', 'git', 'figma', "dotnet", "cs", "python", "aws", "docker", "terraform", "sqlite", "git", "angular"];
 
 const UserForm = () => {
     const [pending, setPending] = useState(false);
 
     return (
-        <div className="user-form-container">
+        <div className="user-form-container text-white">
 
             <p className="font-bold mb-3 text-2xl">Hey there, future portfolio superstar! </p>
             <p className='text-xl'>
@@ -23,7 +23,58 @@ const UserForm = () => {
                     First things first:
                 </h3>
                 <div className="input-div">
-
+                    <label htmlFor="full-name">
+                        Who’s building this incredible portfolio?
+                    </label>
+                    <input
+                        id="full-name"
+                        name="full-name"
+                        className="input xs:h-40"
+                        required
+                        placeholder='Use your full name to let recruiters or collaborators find you easily.'
+                    />
+                </div>
+                <div className="input-div">
+                    <label htmlFor="located-at">
+                        From which corner of the world are you? (city & country)
+                    </label>
+                    <input
+                        id="located-at"
+                        name="located-at"
+                        className="input xs:h-40"
+                        placeholder="Just the city and country will do—no need for full addresses!"
+                        required
+                    />
+                </div>
+                <div className="input-div">
+                    <label htmlFor="timezone">
+                        What timezone works best for you?
+                    </label>
+                    <input
+                        id="timezone"
+                        name="timezone"
+                        className="input xs:h-40"
+                        placeholder="Preferred timezone for collaboration"
+                        required
+                    />
+                </div>
+                <div className="input-div">
+                    <label htmlFor="gender">
+                        How do you identify?
+                    </label>
+                    <select id="gender" name="options" className='input'>
+                        <option value="male">
+                            Male
+                        </option>
+                        <option value="female">
+                            Female
+                        </option>
+                        <option value="other">
+                            Other
+                        </option>
+                    </select>
+                </div>
+                <div className="input-div">
                     <label htmlFor="theme">
                         If your portfolio was a mood, what color would it be?
                     </label>
@@ -42,14 +93,13 @@ const UserForm = () => {
                         Pick your vibe – this is your portfolio personality!
                     </small>
                 </div>
-
                 <div className="input-div">
-                    <label htmlFor="message">
+                    <label htmlFor="one-liner-intro">
                         Alright, describe yourself in one unforgettable sentence.
                     </label>
                     <textarea
-                        id="message"
-                        name="message"
+                        id="one-liner-intro"
+                        name="one-liner-intro"
                         className="input xs:h-40"
                         placeholder="What’s your superpower? Think of it as the tagline on your movie poster! "
                         required
@@ -64,72 +114,85 @@ const UserForm = () => {
                         Now, give me a quick elevator pitch!
                     </h3>
                     <div className="input-div">
-                        <label htmlFor="message">
-                            Who are you?
+                        <label htmlFor="years-of-experience">
+                            How many years of experience do you have?
                         </label>
                         <input
-                            id="message"
-                            name="message"
+                            id="years-of-experience"
+                            name="years-of-experience"
                             className="input xs:h-40"
                             required
-                            placeholder='We’re going for short, sweet, and impactful!'
+                            type='number'
                         />
                     </div>
                     <div className="input-div">
-                        <label htmlFor="message">
+                        <label htmlFor="experience-summary">
                             What do you bring to the table?
                         </label>
                         <input
-                            id="message"
-                            name="message"
+                            id="experience-summary"
+                            name="experience-summary"
                             className="input xs:h-40"
                             required
-                            placeholder='Keep it impactful!'
+                            placeholder='Tell us about your work experience. Keep it impactful!'
                         />
                     </div>
                     <div className="input-div">
-                        <label htmlFor="message">
+                        <label htmlFor="passion">
+                            What are you passionate about?
+                        </label>
+                        <input
+                            id="passion"
+                            name="passion"
+                            className="input xs:h-40"
+                            required
+                            placeholder='Keep it short and impactful!'
+                        />
+                    </div>
+                    <div className="input-div">
+                        <label htmlFor="passion-description">
                             Why should someone scroll further?
                         </label>
                         <input
-                            id="message"
-                            name="message"
+                            id="passion-description"
+                            name="passion-description"
                             className="input xs:h-40"
                             required
-                            placeholder='Tell me something interesting about what coming up next!'
+                            placeholder='Tell us how passionate about your work and what is coming up next to show that!'
                         />
                     </div>
                 </div>
 
                 <div className="input-div">
-                    <label htmlFor="message">
+                    <label htmlFor="skills">
                         What’s in your toolkit?
                     </label>
                     <small className='text-zinc-500 mb-1'>
                         JavaScript, Python, React, Kubernetes – lay it out!
                     </small>
-                    <MultiSelect options={skills} />
+                    <MultiSelect id="skills" options={skills} />
                 </div>
                 <div className="input-div">
-                    <label htmlFor="message">
+                    <label htmlFor="email">
                         How can people reach you?
                     </label>
                     <input
-                        id="message"
-                        name="message"
+                        id="email"
+                        type='email'
+                        name="email"
                         className="input xs:h-40"
                         required
-                        placeholder='Drop that email, LinkedIn, or Twitter handle!'
+                        placeholder='Drop that email'
                     />
                 </div>
 
                 <div className="input-div">
-                    <label htmlFor="message">
+                    <label htmlFor="contact-me-for">
                         And here’s a twist: Why should someone reach out to "you" ?
                     </label>
                     <input
-                        id="message"
-                        name="message"
+                        id="contact-me-for"
+                        name="contact-me-for"
                         className="input xs:h-40"
                         required
                         placeholder='Example: “Looking for a collaborative developer who can debug with a smile? Let’s connect!”'
@@ -142,19 +205,19 @@ const UserForm = () => {
                     </h3>
                     <div className="input-div">
 
-                        <label htmlFor="message">
+                        <label htmlFor="projects">
                             What’s a project that made you go, “Wow, I built that!”?
                         </label>
                         <input
-                            id="message"
-                            name="message"
+                            id="projects"
+                            name="projects"
                             className="input xs:h-40"
                             required
                             placeholder='What is it called?'
                         />
                         <textarea
-                            id="message"
-                            name="message"
+                            id="project-description"
+                            name="project-description"
                             className="input xs:h-40"
                             required
                             placeholder='Add a fun story or challenge you solved to make it personal.'
@@ -167,19 +230,19 @@ const UserForm = () => {
                         Time to shine!
                     </h3>
                     <div className="input-div">
-                        <label htmlFor="message">
+                        <label htmlFor="work-experience">
                             Share where you’ve worked and what you crushed there.
                         </label>
                         <input
-                            id="message"
-                            name="message"
+                            id="work-experience"
+                            name="work-experience"
                             className="input xs:h-40"
                             required
                             placeholder='Where did you work?'
                         />
                         <textarea
-                            id="message"
-                            name="message"
+                            id="work-experience-description"
+                            name="work-experience-description"
                             className="input xs:h-40"
                             required
                             placeholder='Remember, results speak louder than responsibilities – showcase the impact you made! '
@@ -192,34 +255,34 @@ const UserForm = () => {
                         Let’s wrap it up with your digital breadcrumbs:
                     </h3>
                     <div className="input-div">
-                        <label htmlFor="message">
+                        <label htmlFor="linkedin-link">
                             LinkedIn: So they can connect with you professionally.
                         </label>
                         <input
-                            id="message"
-                            name="message"
+                            id="linkedin-link"
+                            name="linkedin-link"
                             className="input xs:h-40"
                             required
                         />
                     </div>
                     <div className="input-div">
-                        <label htmlFor="message">
+                        <label htmlFor="github-link">
                             GitHub: To show off your code playground.
                         </label>
                         <input
-                            id="message"
-                            name="message"
+                            id="github-link"
+                            name="github-link"
                             className="input xs:h-40"
                             required
                         />
                     </div>
                     <div className="input-div">
-                        <label htmlFor="message">
+                        <label htmlFor="leetcode-link">
                             LeetCode: For those jaw-dropping problem-solving skills.
                         </label>
                         <input
-                            id="message"
-                            name="message"
+                            id="leetcode-link"
+                            name="leetcode-link"
                             className="input xs:h-40"
                             required
                         />

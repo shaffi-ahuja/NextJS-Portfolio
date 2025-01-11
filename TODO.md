@@ -18,7 +18,9 @@
 ## Future plans
 
 * User Form - single page UI- **DONE**
-* Turn my hardcoded data into mock files
+* Turn my hardcoded data into mock files- **DONE**
+* Build portfolio section- **DONE** but need modification
+* User Portfolio with mockData- **DONE**
 * User Form - Save Data in DB 
 
 * User Form - multiple sections UI 

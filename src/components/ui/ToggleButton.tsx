@@ -25,7 +25,7 @@ const ToggleButton = () => {
      
             <button
                 onClick={toggleTheme}
-                className={`relative inline-flex h-6 w-12 items-center rounded-full transition-colors ${theme === "dark" ? "bg-zinc-500" : "bg-gray-300"
+                className={`relative inline-flex h-6 w-12 items-center rounded-full transition-colors ${theme === "dark" ? "bg-zinc-500" : "bg-gray-900"
                     }`}
             >
                 <span

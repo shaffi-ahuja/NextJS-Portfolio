@@ -4,11 +4,8 @@
 import Toast from './Toast';
 import { FormEvent, useState } from 'react';
 import { sendMail } from '../../pages/api/sendEmail';
-import { BiArrowFromRight, BiRightTopArrowCircle } from 'react-icons/bi';
-import { BsArrowClockwise, BsArrowUp } from 'react-icons/bs';
-import { LuLink } from 'react-icons/lu';
 
-const ContactForm = () => {
+const ContactForm = ({ contactMeFor, sendTo }: { contactMeFor: string, sendTo: string }) => {
     const [pending, setPending] = useState(false);
     const [showToast, setShowToast] = useState(false);
 
@@ -27,6 +24,7 @@ const ContactForm = () => {
 
             const mailText = `Name: ${data.name}\nEmail: ${data.email}\nMessage: ${data.message}`;
             const response = await sendMail({
+                sendTo: sendTo,
                 email: data.email,
                 subject: 'Someone from portfolio reached out to you!',
                 text: mailText,
@@ -58,7 +56,7 @@ const ContactForm = () => {
             )}
             <p className="form-heading">Let’s talk</p>
             <p>
-                Whether you’re looking to build a new website, improve your existing platform, or bring a unique project to life, I’m here to help.
+                {contactMeFor}
             </p>
 
             <form

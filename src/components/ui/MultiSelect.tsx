@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const MultiSelect = ({ options }: { options: string[] }) => {
+const MultiSelect = ({ options, id }: { options: string[], id: string }) => {
     const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -15,7 +15,7 @@ const MultiSelect = ({ options }: { options: string[] }) => {
     };
 
     return (
-        <div className="relative w-full">
+        <div className="relative w-full" id={id}>
             <div
                 onClick={toggleDropdown}
                 className="border border-zinc-700 rounded-lg px-4 py-4 cursor-pointer bg-zinc-900 flex justify-between items-center capitalize"
