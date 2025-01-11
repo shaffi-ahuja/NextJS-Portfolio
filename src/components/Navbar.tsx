@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import ToggleButton from "../components/ui/ToggleButton";
 
 const Navbar = () => {
 
@@ -24,6 +25,8 @@ const Navbar = () => {
                     <Link href="#ContactMe">Contact</Link>
                 </li>
             </ul>
+            <ToggleButton />
+
         </nav>
     );
 };
