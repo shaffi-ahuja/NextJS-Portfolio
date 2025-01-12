@@ -1,8 +1,8 @@
 import React from 'react'
 import Card from './ui/Card'
 import Link from 'next/link'
-const Skills = ['react', 'typescript', 'javascript', 'html', 'css', 'next', 'redux', 'mui', 'bootstrap', 'tailwind', 'git', 'figma'];
-const About = () => {
+
+const About = ({ data }: { data: any }) => {
     return (
         <section
             className="section-container"
@@ -11,21 +11,21 @@ const About = () => {
             <div className="about-me-grid">
                 <div className='xl:row-span-3'>
                     <Card
-                        image="/aboutMeF.png"
-                        title="With 5+ years of experience"
-                        description="I have honed my skills in frontend development, creating dynamic and responsive websites."
+                        image={data.gender === 'male' ? '/aboutMeM.png' : '/aboutMeF.png'}
+                        title={`With ${data.experience.yearsOfExperience}+ years of experience`}
+                        description={data.experience.experienceSummary}
                     />
                 </div>
                 <div className='xl:row-span-3'>
                     <Card
                         image="/globalcontact.png"
-                        title="I’m very flexible with time zone communications & locations"
-                        description="I'm based in Haryana, India and open to remote work worldwide."
+                        title={`I’m very flexible with ${data.locationOfWork.timeZone} time zone communications & locations`}
+                        description={`I'm based in ${data.locationOfWork.locatedAt} and open to remote work worldwide.`}
                     />
                 </div>
                 <div className='xl:row-span-4'>
                     <Card
-                        skills={Skills}
+                        skills={data.skills}
                         title="Tech Stack"
                         description="I specialize in a variety of languages, frameworks, and tools that allow me to build robust and scalable applications. "
                     />
@@ -33,8 +33,8 @@ const About = () => {
                 <div className='xl:row-span-3 xl:col-span-2'>
                     <Card
                         image="/passion.png"
-                        title="My Passion for Coding"
-                        description="I love solving problems and building things through code. Programming isn't just my profession—it's my passion. I enjoy exploring new technologies and enhancing my skills."
+                        title={`My Passion for ${data.passion.passionTitle}`}
+                        description={data.passion.description}
                     />
                 </div>
                 <div className='xl:row-span-2'>
@@ -46,9 +46,9 @@ const About = () => {
                                 <div className='text-lg'>Contact Me</div>
                                 <Link
                                     className="text-xl hover:underline"
-                                    href="mailto:shaffi.ahuja@gmail.com"
+                                    href={data.email}
                                 >
-                                    shaffi.ahuja@gmail.com
+                                    {data.email}
                                 </Link>
                             </div>
                         }

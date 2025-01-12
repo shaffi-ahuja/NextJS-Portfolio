@@ -6,7 +6,7 @@ const ProjectCard = ({ icon, title, description, techstack, link }: { icon: stri
     return (
         <div className='project-card-container'>
             <div className='flex flex-col'>
-                <Image src={icon} alt={title} height={100} width={100} className='rounded-md mb-3' />
+                <Image src={icon||'/code.png'} alt={title} height={100} width={100} className='rounded-md mb-3' />
                 <h2 className='card-title'>{title}</h2>
                 <div className='mt-2'>{description}</div>
                 <div className=' mt-5 sm:flex'>

@@ -2,10 +2,10 @@
 import Link from 'next/link';
 import React from 'react'
 
-const Hero = () => {
+const Hero = ({ data }: { data: any }) => {
     return (
         <section className='section-container h-[500px] grid justify-items-center content-center' id='home'>
-            <p className='hero-section-heading'>Hi, I'm Shaffi <span
+            <p className='hero-section-heading'>Hi, I'm {data.FirstName}  <span
                 className="inline-block animate-wave"
                 role="img"
                 aria-label="waving hand"
@@ -13,7 +13,7 @@ const Hero = () => {
                 👋
             </span>
             </p>
-            <p className='hero-section-sub-heading'>Frontend web developer from India.</p>
+            <p className='hero-section-sub-heading'>{data.OneLinerIntro}</p>
             <Link className='hero-section-button'
                 href="#ContactMe">
                 <span className="relative flex h-3 w-3 mr-2">

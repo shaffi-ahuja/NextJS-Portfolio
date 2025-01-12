@@ -4,7 +4,7 @@ import { BsLinkedin } from 'react-icons/bs';
 import { FaGithub } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 
-const Footer = () => {
+const Footer = ({ data }: { data: any }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -12,16 +12,16 @@ const Footer = () => {
       <div className="border border-0.5 border-zinc-800 mt-5 mb-10" />
       <div className='footer-grid'>
         <div className='flex gap-4 md:order-last'>
-          <Link href='https://github.com/shaffi-ahuja'>
+          <Link href={data.github}>
             <FaGithub className="footer-icons bi bi-github hover:text-[#fff]" />
 
           </Link>
-          <Link href='https://www.linkedin.com/in/shaffi-ahuja/'>
+          <Link href={data.linkedin}>
 
             <BsLinkedin className="footer-icons bi bi-linkedin hover:text-[#0a66c2] hover:bg-white hover:rounded-sm" />
 
           </Link>
-          <Link href='https://leetcode.com/u/user8200MW/'>
+          <Link href={data.leetcode}>
             <SiLeetcode className='-ml-[2px] footer-icons hover:fill-orange-300' />
           </Link>
 
