@@ -3,7 +3,7 @@
 import React from 'react'
 import { CgProfile } from 'react-icons/cg';
 import Link from 'next/link';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel'
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/Carousel'
 
 const BuildPortfolio = () => {
 

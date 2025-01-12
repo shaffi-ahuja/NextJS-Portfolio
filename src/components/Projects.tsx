@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import ProjectCard from './ui/ProjectCard'
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel'
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/Carousel'
 
 const Projects = ({ data }: { data: any }) => {
 
