@@ -4,7 +4,9 @@ import React from 'react'
 import { CgProfile } from 'react-icons/cg';
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/Carousel'
-
+import profile1 from "../../public/profile1.png";
+import profile2 from "../../public/profile2.png";
+import Image from 'next/image';
 const BuildPortfolio = () => {
 
     return (
@@ -25,20 +27,16 @@ const BuildPortfolio = () => {
                     {Array.from({ length: 3 }).map((_, index) =>
                         <CarouselItem key={index}>
                             <button className='rounded size-10 mx-2' >
-                                <Link href="/user/nimishmadan">
-                                    <CgProfile className='size-10 ' />
+                                <Link href="/user/sahilahuja1729">
+                                    <Image src={profile2} alt="profile" />
                                 </Link>
                             </button>
                             <button className='rounded size-10 mx-2' >
                                 <Link href="/user/nimishmadan">
-                                    <CgProfile className='size-10 ' />
+                                    <Image src={profile1} alt="profile" />
                                 </Link>
                             </button>
-                            <button className='rounded size-10 mx-2' >
-                                <Link href="/user/nimishmadan">
-                                    <CgProfile className='size-10 ' />
-                                </Link>
-                            </button>
+                            
                         </CarouselItem>)
                     }
                 </CarouselContent>

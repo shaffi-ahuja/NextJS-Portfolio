@@ -1,4 +1,4 @@
-export const ShaffiAhuja = {
+const ShaffiAhuja = {
   Intro: {
     FirstName: "Shaffi",
     LastName: "Ahuja",
@@ -113,3 +113,4 @@ Participated in Agile sprints and testing for bug fixes and feature enhancements
     leetcode: "https://leetcode.com/u/user8200MW/",
   },
 };
+export default ShaffiAhuja;

@@ -2,7 +2,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ShaffiAhuja } from "@/data/ShaffiAhuja";
+import ShaffiAhuja from "@/data/ShaffiAhuja";
 import { usePathname } from "next/navigation";
 
 export default function RootLayout({

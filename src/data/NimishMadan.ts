@@ -1,4 +1,4 @@
-export const NimishMadan = {
+const NimishMadan = {
   Intro: {
     FirstName: "Nimish",
     LastName: "Madan",
@@ -106,6 +106,7 @@ Engaged in the development of Windows applications tailored to retrieve and proc
     LastName: "Madan",
     github: "https://github.com/nimishmadan98",
     linkedin: "https://www.linkedin.com/in/nimish-madan-79a453163/",
-    leetcode: "https://leetcode.com/u/user8200MW/",
+    leetcode: "",
   },
 };
+export default NimishMadan;

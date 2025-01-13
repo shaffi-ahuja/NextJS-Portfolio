@@ -4,7 +4,7 @@ import ContactMe from "@/components/ContactMe";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import WorkExperience from "@/components/WorkExperience";
-import { ShaffiAhuja } from "@/data/ShaffiAhuja";
+import ShaffiAhuja from "@/data/ShaffiAhuja";
 export default function Home() {
   return (
     <>

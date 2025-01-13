@@ -2,14 +2,15 @@ import React from 'react'
 import WorkCard from './ui/WorkCard';
 
 const WorkExperience = ({ data }: { data: any }) => {
-  const workhistory = data;
+
+  
   return (
     <section className='section-container'>
       <h1 className='section-heading'>
         My Work Experience
       </h1>
       <div className=' px-4 mt-10'>
-        {workhistory.map((work: any) =>
+        {data.map((work: any) =>
           <WorkCard
             key={work.company}
             image={work.image}

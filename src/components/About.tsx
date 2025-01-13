@@ -11,7 +11,7 @@ const About = ({ data }: { data: any }) => {
             <div className="about-me-grid">
                 <div className='xl:row-span-3'>
                     <Card
-                        image={data.gender === 'male' ? '/aboutMeM.png' : '/aboutMeF.png'}
+                        image={data.gender === 'male' ? '/aboutmeM.png' : '/aboutMeF.png'}
                         title={`With ${data.experience.yearsOfExperience}+ years of experience`}
                         description={data.experience.experienceSummary}
                     />
