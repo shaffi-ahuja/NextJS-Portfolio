@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ShaffiAhuja from "@/data/ShaffiAhuja";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 export default function RootLayout({
     children,
@@ -14,6 +15,9 @@ export default function RootLayout({
     console.log("pathname", pathname)
     // Exclude paths where the footer shouldn't appear
     const excludePaths = ["/user/"];
+    useEffect(() => {
+        document.title = "My Portfolio";
+    }, []);
     return (
         <html lang="en">
             <body

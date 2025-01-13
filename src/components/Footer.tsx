@@ -13,7 +13,7 @@ const Footer = ({ data }: { data: any }) => {
       <div className='footer-grid'>
         <div className='flex gap-4 md:order-last'>
           {github && <Link href={github}>
-            <FaGithub className="footer-icons bi bi-github hover:text-[#fff]" />
+            <FaGithub className="footer-icons bi bi-github hover:text-white" />
 
           </Link>}
           {linkedin && <Link href={linkedin}>
@@ -26,7 +26,7 @@ const Footer = ({ data }: { data: any }) => {
           </Link>}
 
         </div>
-        <p className='text-zinc-600'>&copy; {currentYear} | {`${FirstName} ${LastName}`} | All rights reserved.</p>
+        <p className='text-zinc-500'>&copy; {currentYear} | {`${FirstName} ${LastName}`} | All rights reserved.</p>
       </div>
     </footer>
   )

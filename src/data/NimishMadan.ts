@@ -5,7 +5,6 @@ const NimishMadan = {
     OneLinerIntro: "Backend web developer from India.",
     Theme: "dark",
   },
-  //UserForm not related
   AboutMe: {
     gender: "male",
     experience: {

@@ -10,7 +10,7 @@ const WorkCard = ({ image, company, title, duration, description }: { image: str
 
             <div className='basis-11/12'>
                 <p className='text-xl'>{company}</p>
-                <p className='text-sm text-gray-500'>
+                <p className='text-sm text-zinc-500'>
                     <span className='uppercase '>
                         {title}
                     </span> - {duration}

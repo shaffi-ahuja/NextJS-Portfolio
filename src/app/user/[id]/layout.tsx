@@ -20,6 +20,7 @@ export default function UserHome({ params, children }: UserHomeProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+
   // Unwrap `params` using `React.use()` to access the `id`
   const { id } = React.use(params);
 
@@ -58,6 +59,7 @@ export default function UserHome({ params, children }: UserHomeProps) {
   }
 
   const { Intro, Footer: FooterData } = userData!;
+
 
   return (
     <>

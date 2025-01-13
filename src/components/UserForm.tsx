@@ -2,13 +2,14 @@
 import React, { useState } from 'react';
 import MultiSelect from "../components/ui/MultiSelect";
 import Toast from './ui/Toast';
+import MDEditor from '@uiw/react-md-editor';
 
 const skills = ['react', 'typescript', 'javascript', 'html', 'css', 'next', 'redux', 'mui', 'bootstrap', 'tailwind', 'figma', "dotnet", "cs", "python", "aws", "docker", "terraform", "sqlite", "git", "angular"];
 
 const UserForm = () => {
     const [pending, setPending] = useState(false);
     const [showToast, setShowToast] = useState(true);
-
+    const [value, setValue] = React.useState("");
     return (
         <div className="user-form-container">
             {showToast && (
@@ -222,13 +223,29 @@ const UserForm = () => {
                             required
                             placeholder='What is it called?'
                         />
-                        <textarea
+                        {/* <textarea
                             id="project-description"
                             name="project-description"
                             className="input xs:h-40"
                             required
                             placeholder='Add a fun story or challenge you solved to make it personal.'
+                        /> */}
+                        <MDEditor
+                            value={value}
+                            onChange={(value) => setValue(value as string)}
+                            id="project-description"
+                            preview="edit"
+                            className='dark:text-white input xs:h-40'
+                            height={300}
+                            style={{overflow: "hidden" }}
+                            textareaProps={{
+                                placeholder: 'Add a fun story or challenge you solved to make it personal.'
+                            }}
+                            previewOptions={{
+                                disallowedElements: ["style"]
+                            }}
                         />
+
                     </div>
                 </div>
 
@@ -247,12 +264,27 @@ const UserForm = () => {
                             required
                             placeholder='Where did you work?'
                         />
-                        <textarea
+                        {/* <textarea
                             id="work-experience-description"
                             name="work-experience-description"
                             className="input xs:h-40"
                             required
                             placeholder='Remember, results speak louder than responsibilities – showcase the impact you made! '
+                        /> */}
+                        <MDEditor
+                            value={value}
+                            onChange={(value) => setValue(value as string)}
+                            id="project-description"
+                            preview="edit"
+                            className='input xs:h-40 dark:text-white'
+                            height={300}
+                            style={{ overflow: "hidden " }}
+                            textareaProps={{
+                                placeholder: 'Remember, results speak louder than responsibilities – showcase the impact you made!'
+                            }}
+                            previewOptions={{
+                                disallowedElements: ["style"]
+                            }}
                         />
                     </div>
                 </div>

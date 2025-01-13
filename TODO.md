@@ -21,6 +21,9 @@
 * Turn my hardcoded data into mock files- **DONE**
 * Build portfolio section- **DONE** but need modification
 * User Portfolio with mockData- **DONE**
+* User Form - Multiple Projects and work experience UI
+* Upload project icon and project icon
+* User Form - markdown for project details and Work Experience.
 * Add Metadata/ tab title
 * User Form - Save Data in DB 
 

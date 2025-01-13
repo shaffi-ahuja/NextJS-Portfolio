@@ -62,7 +62,7 @@
   }
 
   .input {
-    @apply border border-zinc-300 bg-zinc-200 px-5 py-4 rounded-md mt-3 placeholder:text-zinc-400 dark:border-zinc-700 dark:bg-zinc-900;
+    @apply border border-zinc-300 bg-zinc-200 px-5 py-4 xs:py-1 rounded-md mt-3 placeholder:text-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 ;
   }
 
   .button {
@@ -96,7 +96,7 @@
     @apply basis-1/12 mr-2 justify-items-center;
   }
   .work-exp-desc-list {
-    @apply text-gray-400 my-3 list-disc;
+    @apply text-zinc-500 my-3 list-disc;
   }
   .section-container {
     @apply xl:px-32 lg:px-24 md:px-16 px-8 xs:px-2;
@@ -135,12 +135,12 @@
     @apply sm:text-2xl font-bold text-xl;
   }
   .nav-links {
-    @apply sm:flex gap-5 grow justify-end text-lg text-zinc-400 hidden;
+    @apply sm:flex gap-5 grow justify-end text-lg text-zinc-500 hidden;
   }
 }
 
 .user-form-container {
-  @apply mx-auto mt-10 justify-items-center w-2/3 xs:px-10;
+  @apply mx-auto mt-10 justify-items-center w-2/3 xs:px-1;
 }
 
 @layer base {
