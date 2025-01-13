@@ -1,15 +1,22 @@
 'use client';
 import React, { useState } from 'react';
 import MultiSelect from "../components/ui/MultiSelect";
+import Toast from './ui/Toast';
 
 const skills = ['react', 'typescript', 'javascript', 'html', 'css', 'next', 'redux', 'mui', 'bootstrap', 'tailwind', 'figma', "dotnet", "cs", "python", "aws", "docker", "terraform", "sqlite", "git", "angular"];
 
 const UserForm = () => {
     const [pending, setPending] = useState(false);
+    const [showToast, setShowToast] = useState(true);
 
     return (
         <div className="user-form-container">
-
+            {showToast && (
+                <Toast
+                    message="Preview Feature: Creating Portfolio is currently not available. Stay tuned for future updates!"
+                    variant="info"
+                />
+            )}
             <p className="font-bold mb-3 text-2xl">Hey there, future portfolio superstar! </p>
             <p className='text-xl'>
                 Let’s create a portfolio that screams “Hire me!” 🎉  Ready to dive in?

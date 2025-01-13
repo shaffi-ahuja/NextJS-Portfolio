@@ -81,10 +81,13 @@
     @apply border-zinc-300 border rounded-md p-5 h-fit pb-10;
   }
   .toast {
-    @apply border rounded-md w-fit p-3 h-fit px-10 fixed right-5 bottom-16 text-center content-center text-lg;
+    @apply text-white border rounded-md w-fit p-3 h-fit px-10 fixed right-5 bottom-16 text-center content-center text-lg z-50;
   }
   .success-toast {
-    @apply border-cyan-700 bg-cyan-700;
+    @apply border-green-700 bg-green-700;
+  }
+  .info-toast {
+    @apply border-cyan-700 bg-cyan-700 bottom-5 px-5;
   }
   .error-toast {
     @apply border-red-700 bg-red-700;
