@@ -22,14 +22,23 @@ const BuildPortfolio = () => {
             </p>
             <Carousel className='carousel-container mt-2'>
                 <CarouselContent>
-                    {Array.from({ length: 5 }).map((_, index) =>
+                    {Array.from({ length: 3 }).map((_, index) =>
                         <CarouselItem key={index}>
-                            <button className='rounded size-10 ' >
+                            <button className='rounded size-10 mx-2' >
                                 <Link href="/user/nimishmadan">
                                     <CgProfile className='size-10 ' />
                                 </Link>
                             </button>
-
+                            <button className='rounded size-10 mx-2' >
+                                <Link href="/user/nimishmadan">
+                                    <CgProfile className='size-10 ' />
+                                </Link>
+                            </button>
+                            <button className='rounded size-10 mx-2' >
+                                <Link href="/user/nimishmadan">
+                                    <CgProfile className='size-10 ' />
+                                </Link>
+                            </button>
                         </CarouselItem>)
                     }
                 </CarouselContent>

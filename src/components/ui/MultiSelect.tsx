@@ -18,7 +18,7 @@ const MultiSelect = ({ options, id }: { options: string[], id: string }) => {
         <div className="relative w-full" id={id}>
             <div
                 onClick={toggleDropdown}
-                className="border border-zinc-700 rounded-lg px-4 py-4 cursor-pointer bg-zinc-900 flex justify-between items-center capitalize"
+                className="input flex justify-between items-center capitalize"
             >
                 <span>
                     {selectedOptions.length > 0
@@ -43,12 +43,12 @@ const MultiSelect = ({ options, id }: { options: string[], id: string }) => {
             </div>
 
             {isOpen && (
-                <ul className="absolute mt-1 border border-zinc-700 bg-zinc-900 rounded-lg shadow-lg max-h-40 overflow-y-auto w-full">
+                <ul className="input rounded-lg shadow-lg max-h-40 overflow-y-auto w-full">
                     {options.map((option) => (
                         <li
                             key={option}
                             onClick={() => handleOptionClick(option)}
-                            className={`px-4 py-4 cursor-pointer hover:bg-zinc-500 capitalize ${selectedOptions.includes(option) ? "bg-zinc-700" : ""
+                            className={`px-4 py-4 cursor-pointer dark:hover:bg-zinc-500 hover:bg-gray-300 capitalize ${selectedOptions.includes(option) ? "dark:bg-zinc-700 bg-gray-400" : ""
                                 }`}
                         >
                             <input

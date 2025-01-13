@@ -26,7 +26,7 @@ const Footer = ({ data }: { data: any }) => {
           </Link>
 
         </div>
-        <p className='text-zinc-600'>&copy; {currentYear} | Shaffi Ahuja | All rights reserved.</p>
+        <p className='text-zinc-600'>&copy; {currentYear} | {`${data.FirstName} ${data.LastName}`} | All rights reserved.</p>
       </div>
     </footer>
   )

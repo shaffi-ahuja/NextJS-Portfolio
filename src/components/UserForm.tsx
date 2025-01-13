@@ -2,13 +2,13 @@
 import React, { useState } from 'react';
 import MultiSelect from "../components/ui/MultiSelect";
 
-const skills = ['react', 'typescript', 'javascript', 'html', 'css', 'next', 'redux', 'mui', 'bootstrap', 'tailwind', 'git', 'figma', "dotnet", "cs", "python", "aws", "docker", "terraform", "sqlite", "git", "angular"];
+const skills = ['react', 'typescript', 'javascript', 'html', 'css', 'next', 'redux', 'mui', 'bootstrap', 'tailwind', 'figma', "dotnet", "cs", "python", "aws", "docker", "terraform", "sqlite", "git", "angular"];
 
 const UserForm = () => {
     const [pending, setPending] = useState(false);
 
     return (
-        <div className="user-form-container text-white">
+        <div className="user-form-container">
 
             <p className="font-bold mb-3 text-2xl">Hey there, future portfolio superstar! </p>
             <p className='text-xl'>
@@ -295,7 +295,7 @@ const UserForm = () => {
                     </h3>
                     <button
                         className={`button ${pending && 'cursor-not-allowed opacity-50'
-                            }`}
+                            } mb-10`}
                         type="submit"
                         disabled={pending}
                     >

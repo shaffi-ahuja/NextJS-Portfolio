@@ -26,7 +26,7 @@ const Projects = ({ data }: { data: any }) => {
       <Carousel className='carousel-container'>
         <CarouselContent>
           {data.map((project: any) =>
-            <CarouselItem>
+            <CarouselItem key={project.title}>
               <ProjectCard
                 key={project.title}
                 icon={project.icon}

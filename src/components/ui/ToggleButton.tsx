@@ -1,28 +1,35 @@
+'use client';
+
 import React, { useEffect, useState } from "react";
 
 const ToggleButton = () => {
-    const [theme, setTheme] = useState<string>(
-        typeof window !== "undefined" && localStorage.theme
-            ? localStorage.theme
-            : "light"
-    );
+    const [theme, setTheme] = useState<string | null>(null);
+
+    // Sync theme with localStorage or set default
+    useEffect(() => {
+        const storedTheme = localStorage.getItem("theme") || "light";
+        setTheme(storedTheme);
+        document.documentElement.classList.toggle("dark", storedTheme === "dark");
+    }, []);
 
     useEffect(() => {
-        if (theme === "dark") {
-            document.documentElement.classList.add("dark");
-        } else {
-            document.documentElement.classList.remove("dark");
+        if (theme) {
+            localStorage.setItem("theme", theme);
+            document.documentElement.classList.toggle("dark", theme === "dark");
         }
-        localStorage.setItem("theme", theme);
     }, [theme]);
 
     const toggleTheme = () => {
-        setTheme(theme === "dark" ? "light" : "dark");
+        if (theme) {
+            setTheme(theme === "dark" ? "light" : "dark");
+        }
     };
+
+    // Render nothing until theme is initialized
+    if (!theme) return null;
 
     return (
         <div className="flex items-center space-x-3">
-     
             <button
                 onClick={toggleTheme}
                 className={`relative inline-flex h-6 w-12 items-center rounded-full transition-colors ${theme === "dark" ? "bg-zinc-500" : "bg-gray-900"

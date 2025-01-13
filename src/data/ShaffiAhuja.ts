@@ -106,6 +106,8 @@ Participated in Agile sprints and testing for bug fixes and feature enhancements
     },
   ],
   Footer: {
+    FirstName: "Shaffi",
+    LastName: "Ahuja",
     github: "https://github.com/shaffi-ahuja",
     linkedin: "https://www.linkedin.com/in/shaffi-ahuja/",
     leetcode: "https://leetcode.com/u/user8200MW/",

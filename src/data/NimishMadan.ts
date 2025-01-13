@@ -102,6 +102,8 @@ Engaged in the development of Windows applications tailored to retrieve and proc
     },
   ],
   Footer: {
+    FirstName: "Nimish",
+    LastName: "Madan",
     github: "https://github.com/nimishmadan98",
     linkedin: "https://www.linkedin.com/in/nimish-madan-79a453163/",
     leetcode: "https://leetcode.com/u/user8200MW/",
