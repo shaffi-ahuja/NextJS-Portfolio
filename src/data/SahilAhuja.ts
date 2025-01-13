@@ -29,7 +29,7 @@ const SahilAhuja = {
       "Whether you’re looking to elevate your online presence, launch a targeted campaign, or adapt to the latest digital trends, I bring a data-driven and creative approach to solving challenges, I’m here to help to stay ahead in a competitive market, measure your campaign impact, and continuously optimize for better results.",
     email: "sahilahuja1729@gmail.com",
   },
-  Projects: [],
+  Projects: null,
   WorkExperience: [
     {
       image: "/kuware_inc_logo.jpeg",
