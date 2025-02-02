@@ -32,12 +32,12 @@ const BuildPortfolio = () => {
                         <CarouselItem key={index}> */}
             <div className='mt-5'>
             <button className='rounded size-10 mx-2' >
-                <Link href="/user/sahilahuja1729">
+                    <Link href="https://my-digitall-portfolio.vercel.app/user/sahilahuja1729">
                     <Image src={profile2} alt="profile" />
                 </Link>
             </button>
             <button className='rounded size-10 mx-2' >
-                <Link href="/user/nimishmadan">
+                    <Link href="https://my-digitall-portfolio.vercel.app/user/nimishmadan">
                     <Image src={profile1} alt="profile" />
                 </Link>
             </button>

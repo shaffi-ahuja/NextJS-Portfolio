@@ -77,7 +77,7 @@ proactively control and manage access in adherence to health and
 safety protocols, demonstrating adaptability and a keen
 understanding of evolving requirements.`,
       techstack: ["dotnet"],
-      link: "https://pitch-project.vercel.app/",
+      link: "",
     },
   ],
   WorkExperience: [
