@@ -1,77 +1,52 @@
-'use client';
 import Footer from "@/components/Footer";
 import "../../globals.css";
 import Navbar from "@/components/Navbar";
-import { useEffect, useState } from "react";
-import React from "react";
+import { getPortfolio } from "@/lib/storage";
 
-interface UserHomeProps {
-  params: Promise<{ id: string }>; // `params` is now a Promise
-  children: any
+interface Props {
+  params: Promise<{ id: string }>;
+  children: React.ReactNode;
 }
 
-interface UserData {
-  Intro?: any;
-  Footer?: any
+// Legacy static users — same fallback as page.tsx
+async function getLegacyUser(id: string) {
+  const legacyMap: Record<string, () => Promise<{ default: unknown }>> = {
+    nimishmadan: () => import("@/data/NimishMadan"),
+    sahilahuja1729: () => import("@/data/SahilAhuja"),
+  };
+  const loader = legacyMap[id];
+  if (!loader) return null;
+  const mod = await loader();
+  return mod.default as any;
 }
 
-export default function UserHome({ params, children }: UserHomeProps) {
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export default async function UserLayout({ params, children }: Props) {
+  const { id } = await params;
 
+  // 1. Try Upstash first (new users from the form)
+  let userData: any = await getPortfolio(id);
 
-  // Unwrap `params` using `React.use()` to access the `id`
-  const { id } = React.use(params);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let userModule: any; // Module export will be an object
-
-        // Dynamically import the appropriate file based on the `id` from `params`
-        if (id === "nimishmadan") {
-          userModule = (await import("@/data/NimishMadan")).default;
-        } else if (id === "sahilahuja1729") {
-          userModule = (await import("@/data/SahilAhuja")).default;
-        } else {
-          throw new Error("Unknown user ID");
-        }
-
-        // Now access the user data based on the key from the module
-        setUserData(userModule); // Access the correct user data by the `id` key
-      } catch (err: any) {
-        setError(err.message); // Capture the error message
-      } finally {
-        setLoading(false); // Stop loading when the data is loaded or error occurs
-      }
-    };
-
-    fetchData();
-  }, [id]); // Dependency array to re-run when `params.id` changes
-
-  if (loading) {
-    return <div>Loading...</div>;
+  // 2. Fall back to legacy static files
+  if (!userData) {
+    userData = await getLegacyUser(id);
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  // 3. If still nothing, render a minimal shell — page.tsx will show notFound()
+  if (!userData) {
+    return (
+      <div className="antialiased text-black bg-white dark:text-white dark:bg-black font-sans">
+        {children}
+      </div>
+    );
   }
 
-  const { Intro, Footer: FooterData } = userData!;
-
+  const { Intro, Footer: FooterData } = userData;
 
   return (
-    <>
-      <div
-        className={`antialiased text-black bg-white dark:text-white dark:bg-black font-sans`}
-      >
-        <Navbar data={Intro} />
-        {children}
-        <Footer data={FooterData} />
-      </div>
-    </>
-
+    <div className="antialiased text-black bg-white dark:text-white dark:bg-black font-sans">
+      <Navbar data={Intro} />
+      {children}
+      <Footer data={FooterData} />
+    </div>
   );
 }
-

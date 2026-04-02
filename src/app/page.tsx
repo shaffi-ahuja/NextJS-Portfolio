@@ -5,11 +5,12 @@ import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import WorkExperience from "@/components/WorkExperience";
 import ShaffiAhuja from "@/data/ShaffiAhuja";
+
 export default function Home() {
   return (
     <>
       <Hero data={ShaffiAhuja.Intro} />
-      <About data={ShaffiAhuja.AboutMe} />
+      <About data={ShaffiAhuja.AboutMe} intro={ShaffiAhuja.Intro} />
       <Projects data={ShaffiAhuja.Projects} />
       <WorkExperience data={ShaffiAhuja.WorkExperience} />
       <BuildPortfolio />

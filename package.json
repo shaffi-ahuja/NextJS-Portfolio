@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "zod": "^3.23.8",
+    "@upstash/redis": "^1.34.3",
     "@radix-ui/react-slot": "^1.1.1",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.69.0",
