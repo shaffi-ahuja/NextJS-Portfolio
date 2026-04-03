@@ -85,7 +85,7 @@ understanding of evolving requirements.`,
       image: "/nagarro_logo.jpeg",
       company: "Nagarro",
       title: "Associate Staff Engineer",
-      startYear: "2022", endYear: "Present",
+      duration: "April 2022 - Present",
       description: `Demonstrated expertise in working extensively with the .Net Core and implementing REST APIs, showcasing a strong understanding of backend technologies and architecture.
 Engaged in the development of Python Serverless Microservices aimed at streamlining the car purchasing workow, contributing throughout the entire end-to-end product development lifecycle.
 Procient in working with Docker, Terraform, AWS, and adept at employing monitoring tools such as New Relic and Splunk for enhanced system performance`,
@@ -94,7 +94,7 @@ Procient in working with Docker, Terraform, AWS, and adept at employing monitori
       image: "/globallogic_logo.jpeg",
       company: "Globallogic",
       title: "Senior Software Engineer ",
-      startYear: "2019", endYear: "2022",
+      duration: "October 2019 - April 2022",
       description: `Developed and maintained REST APIs utilizing the .Net Core, instrumental in controlling and managing access to residential and commercial buildings.
 Pioneered the creation of REST APIs from inception, specializing in overseeing access for visitors within a corporate setting.
 Engaged in the development of Windows applications tailored to retrieve and process records stored in Active Directory, leveraging the LDAP Protocol for seamless integration and data processing.`,

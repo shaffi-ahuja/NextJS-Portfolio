@@ -2,7 +2,7 @@ const ShaffiAhuja = {
   Intro: {
     FirstName: "Shaffi",
     LastName: "Ahuja",
-    OneLinerIntro: "Senior Frontend Developer · React · Next.js · TypeScript",
+    OneLinerIntro: "Frontend web developer from India.",
     Theme: "dark",
   },
   AboutMe: {
@@ -10,16 +10,16 @@ const ShaffiAhuja = {
     experience: {
       yearsOfExperience: 5,
       experienceSummary:
-        "I specialise in building scalable, high-performance web applications — from multi-tenant SaaS platforms to GenAI-powered features — with a strong focus on UI consistency, accessibility, and reusable architecture.",
+        "I have honed my skills in frontend development, creating dynamic and responsive websites.",
     },
     locationOfWork: {
       timeZone: "any",
       locatedAt: "Haryana, India",
     },
     passion: {
-      passionTitle: "Crafting Exceptional UIs",
+      passionTitle: "Coding",
       description:
-        "I care deeply about the details that make a product feel great — perceived performance, accessibility, and design consistency. Frontend isn't just presentation to me; it's the product. I enjoy owning complex UI problems end-to-end and building things that scale.",
+        "I love solving problems and building things through code. Programming isn't just my profession—it's my passion. I enjoy exploring new technologies and enhancing my skills.",
     },
     skills: [
       "react",
@@ -39,30 +39,34 @@ const ShaffiAhuja = {
   },
   ContactMe: {
     contactMeFor:
-      "Whether you're looking to build a new product, scale an existing frontend, or bring a unique idea to life — I'm here to help.",
+      "Whether you’re looking to build a new website, improve your existing platform, or bring a unique project to life, I’m here to help.",
     email: "shaffi.ahuja@gmail.com",
   },
   Projects: [
     {
-      icon: "/portfolio.png",
-      title: "Portfolio Builder — Multi-Tenant SaaS",
-      description: `A SaaS platform where users generate and deploy their own fully personalised portfolio sites via a structured form — each user gets a unique live URL (e.g. /user/sahilahuja). Supports light/dark theming, responsive layout, and a reusable component architecture that mirrors real-world multi-tenant systems.\n\nBuilt end-to-end: form-driven data collection, dynamic per-user rendering, theme switching, and email-integrated contact form. Live users are already using it in production.`,
+      icon: "/hilink.svg",
+      title: "HiLink - Travel Webpage",
+      description: `Built with Next.js, TailwindCSS, and TypeScript, this landing page not only looks great but also serves as a hands-on project to reinforce one's understanding of these technologies.
+
+      Includes Appealing Hero Section,Camp Exploration Section, Engaging Travel Guide Section,Feature-Rich Section,Call to Action for Mobile Apps,Footer etc.
+      `,
       techstack: ["next", "typescript", "tailwind"],
-      link: "https://shaffi-ahuja.vercel.app",
+      link: "https://travel-app-gold-nine.vercel.app/",
     },
     {
       icon: "/pitch.png",
-      title: "Pitch — Startup Directory Platform",
-      description: `A full-featured startup pitch platform built on Next.js 15 with Sanity's Live Content API — content updates in real time without a page reload. Features GitHub OAuth authentication, pitch submission and browsing, editor picks, view counters, search, and per-user profile pages.\n\nDemonstrates end-to-end ownership: auth, CMS integration, real-time data, and a clean minimalist UX optimised for readability.`,
+      title: "Pitch - Startup Directory Platform",
+      description: `A Next.js 15 platform where entrepreneurs can submit their startup ideas for virtual pitch competitions, browse other pitches, and gain exposure through a clean minimalistic design for a smooth user experience having Live Content API, GitHub Authentication,Pitch Submission,View Pitches,Pitch Details Page,Profile Page,Editor Picks,Views Counter,Search,Minimalistic Design`,
       techstack: ["typescript", "tailwind", "react", "next", "sanity"],
       link: "https://pitch-project.vercel.app/",
     },
     {
-      icon: "/hilink.svg",
-      title: "HiLink — Travel Landing Page",
-      description: `A high-fidelity, pixel-perfect travel landing page built with Next.js, Tailwind CSS, and TypeScript. Focused on responsive design, component reusability, and modern layout techniques — all built from scratch without UI kits.\n\nSections include Hero, Camp Exploration, Travel Guide, Feature highlights, Mobile App CTA, and Footer.`,
+      icon: "/portfolio.png",
+      title: "Portfolio -  Let’s Build Your Dream Portfolio!",
+      description:
+        "This is a personal portfolio website that showcases my journey, skills, and accomplishments. It is designed to be a visually appealing and user-friendly platform to provide a comprehensive view of my professional life. Future Additions- Create Your Own Dream Portfolio : A section to inspire and guide users to create their personalized portfolios.",
       techstack: ["next", "typescript", "tailwind"],
-      link: "https://travel-app-gold-nine.vercel.app/",
+      link: "",
     },
   ],
   WorkExperience: [
@@ -70,22 +74,40 @@ const ShaffiAhuja = {
       image: "/publicisresources_logo.jpeg",
       company: "Publicis Re:Sources",
       title: "Associate L2",
-      startYear: "2023", endYear: "Present",
-      description: `Built scalable multi-tenant frontend architecture with dynamic theming — enabling faster client onboarding across multiple environments.\nDeveloped key product features: Onboarding UI, Immediate Action Widget, Personalized Feed, and GenAI integrations (Ask Client).\nImproved UI consistency post design-system rollout, reducing inconsistencies by ~30% across the platform.\nResolved 50+ critical defects across TST/Preprod, reducing QA cycle delays by ~25%.\nDesigned base architecture for complex modules (Create/Edit Post), enabling seamless handoff across teams.\nMentored junior developers and conducted code reviews, improving team velocity and code quality.\nCollaborated cross-functionally to ensure consistent UX and seamless feature integration across tenants.`,
+      duration: "November 2023 - Present",
+      description: `Implemented multi-tenant architecture with dynamic theming.
+Integrated Gen AI, Ask Client, Personalized Feed, and Profile features.
+Identified and resolved critical defects, boosting application stability and user satisfaction.
+Worked on Notifications, Profile, Onboarding, etc.
+Conducted R&D on micro frontend architecture and optimized application performance.
+Reviewed code and mentored junior developers, fostering team growth and best practices.
+Actively participated in sprint planning, effort estimation, and on-time feature delivery while adhering to Agile methodologies.
+Collaborated with cross-functional teams to ensure seamless integration and a consistent user experience.`,
     },
     {
       image: "/hcltech_logo.jpeg",
-      company: "HCL Technologies",
-      title: "Senior Software Engineer",
-      startYear: "2022", endYear: "2023",
-      description: `Developed accessible, reusable UI components using React, MUI, and RJSF for a healthcare client — fully WCAG compliant.\nBuilt and maintained a Storybook component library, improving UI consistency and reducing development effort by ~20%.\nImplemented responsive applications and improved reliability through unit testing with Jest.\nLed a React.js training programme for 20+ freshers, accelerating onboarding and improving team capability.\nConducted code reviews and enforced best practices across the engineering team.`,
+      company: "HCL",
+      title: "Senior Software Engineer ",
+      duration: "January 2022 - November 2023",
+      description: `Developed accessible UI components using React, MUI, and RJSF for react library for healthcare client, ensuring WCAG compliance.
+Used Storybook for component documentation and UI consistency.
+Developed and maintained responsive web application using RCL and conducted unit testing with Jest for improved reliability.
+Collaborated with backend developers and designers for seamless integration.
+Adhered to Agile methodologies and conducted code reviews to maintain quality standards.
+Designed and led a training program on React.js for freshers.`,
     },
     {
       image: "/wipro_logo.jpeg",
       company: "Wipro",
-      title: "Project Engineer",
-      startYear: "2019", endYear: "2022",
-      description: `Developed multiple enterprise portals on Wipro's in-house devNXT platform — COE Governance, Project Management, MyLearning, SME Dashboard, and more.\nBuilt UI for NHS application with login, document creation, approval workflows, and admin functionalities.\nEnhanced UI for enterprise clients including Oracle and UBS, improving usability and performance.\nCreated 10+ automated rules for a remediation tool, reducing manual code review effort significantly.\nDeveloped features for analytics, reports, forum interactions, blogs, and notifications.`,
+      title: "Project Engineer ",
+      duration: "August 2019 - January 2022",
+      description: `Developed Wipro’s in-house devNXT product, handling multiple portals: COE Governance, Project Management, MyLearning,
+MyProfile, SME Dashboard, and more.
+Created UI for NHS application with login, document creation, approval workflows, and admin functionalities.
+Enhanced UI for Oracle Dashboard, UBS, and enhanced UI in devNXT.
+Contributed to the remediation tool by developing 10+ rules for C# code files.
+Worked on a project management module to manage tasks, teams, deadlines, and workload.
+Developed features for forum interactions, blogs, analytics, reports, and notifications.`,
     },
   ],
   Footer: {

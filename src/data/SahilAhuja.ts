@@ -35,7 +35,7 @@ const SahilAhuja = {
       image: "/kuware_inc_logo.jpeg",
       company: "KUWARE Inc.",
       title: "Associate L2",
-      startYear: "2022", endYear: "2023",
+      duration: "August 2022 - August 2023",
       description: `Helped close PPC clients -
 Developed pitch decks for the sales team, incorporating research data on the digital presence of potential clients and the strategies of their leading competitors. Included insights on how our PPC service could enhance their performance, along with expected numbers.
 Ran Successful Social Media Ad Campaigns -

@@ -4,7 +4,7 @@ import React from 'react'
 
 const Hero = ({ data }: { data: any }) => {
     return (
-        <section className='section-container min-h-[400px] md:h-[500px] grid justify-items-center content-center py-16 md:py-0' id='home'>
+        <section className='section-container h-[500px] grid justify-items-center content-center' id='home'>
             <p className='hero-section-heading'>Hi, I'm {data.FirstName}  <span
                 className="inline-block animate-wave"
                 role="img"
