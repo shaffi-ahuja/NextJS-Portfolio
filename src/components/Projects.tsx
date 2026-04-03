@@ -1,20 +1,24 @@
-"use client"
+"use client";
+import React from "react";
+import ProjectCard from "./ui/ProjectCard";
+import AnimatedSection from "./ui/AnimatedSection";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/Carousel";
 
-import React from 'react'
-import ProjectCard from './ui/ProjectCard'
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/Carousel'
-
-const Projects = ({ data }: { data: any[] }) => {
-  if (!data || data.length === 0) return null
-
-  const isMultiple = data.length > 1
+export default function Projects({ data }: { data: any[] }) {
+  if (!data || data.length === 0) return null;
+  const isMultiple = data.length > 1;
 
   return (
-    <section className='section-container' id='Projects'>
-      <h1 className='section-heading'>My Recent Work</h1>
-
-      <div className='px-10'>
-        <Carousel className='carousel-container'>
+    <AnimatedSection className="section-container" direction="up" id="Projects">
+      <h1 className="section-heading">My Recent Work</h1>
+      <div className="px-10">
+        <Carousel className="carousel-container" aria-label="Project showcase">
           <CarouselContent>
             {data.map((project: any) => (
               <CarouselItem key={project.title}>
@@ -28,14 +32,10 @@ const Projects = ({ data }: { data: any[] }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-
-          {/* Only show arrows when there are multiple projects */}
-          {isMultiple && <CarouselPrevious />}
-          {isMultiple && <CarouselNext />}
+          {isMultiple && <CarouselPrevious aria-label="Previous project" />}
+          {isMultiple && <CarouselNext aria-label="Next project" />}
         </Carousel>
       </div>
-    </section>
-  )
+    </AnimatedSection>
+  );
 }
-
-export default Projects

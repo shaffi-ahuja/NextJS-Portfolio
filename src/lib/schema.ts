@@ -14,8 +14,11 @@ export const WorkExperienceSchema = z.object({
   image: z.string().optional().default(""),
   company: z.string().min(1, "Company name is required"),
   title: z.string().min(1, "Job title is required"),
+  startMonth: z.string().default(""),
   startYear: z.string().min(4, "Start year is required"),
-  endYear: z.string().default("Present"),
+  endMonth: z.string().default(""),
+  endYear: z.string().default(""),
+  isCurrentJob: z.boolean().default(false),
   description: z.string().min(1, "Description is required"),
 });
 
@@ -111,7 +114,16 @@ export type PortfolioFormData = {
   email: string;
   contactMeFor: string;
   projects: { title: string; description: string; techstack: string[]; link: string }[];
-  workExperiences: { company: string; title: string; startYear: string; endYear: string; description: string }[];
+  workExperiences: {
+    company: string;
+    title: string;
+    startMonth: string;
+    startYear: string;
+    endMonth: string;
+    endYear: string;
+    isCurrentJob: boolean;
+    description: string;
+  }[];
   github: string;
   linkedin: string;
   leetcode: string;
@@ -159,7 +171,10 @@ export function formDataToPortfolio(data: PortfolioFormData): Portfolio {
       : null,
     WorkExperience: data.workExperiences.map(w => ({
       image: "", company: w.company, title: w.title,
-      startYear: w.startYear, endYear: w.endYear, description: w.description,
+      startMonth: w.startMonth, startYear: w.startYear,
+      endMonth: w.endMonth, endYear: w.endYear,
+      isCurrentJob: w.isCurrentJob,
+      description: w.description,
     })),
     Footer: {
       FirstName: data.firstName, LastName: data.lastName,
