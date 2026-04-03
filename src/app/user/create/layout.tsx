@@ -21,7 +21,7 @@ export default function RootLayout({
                 <p className=" nav-logo" >
                     Let's create your portfolio
                 </p>
-                <ToggleButton />
+                {/* <ToggleButton /> */}
             </nav>
             {children}
         </div>

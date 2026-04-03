@@ -1,43 +1,27 @@
-import React from 'react'
-import Card from './ui/Card'
-import Link from 'next/link'
-import Image from 'next/image'
+// RSC — no interactivity, pure display
+import Image from 'next/image';
+import Link from 'next/link';
+import Card from './ui/Card';
+import { AboutMeData, IntroData } from '@/lib/schema';
 
-const About = ({ data, intro }: { data: any; intro?: any }) => {
-  // Profile image: base64 from form > gender fallback
-  const profileImage = intro?.profileImage && intro.profileImage.trim() !== ''
-    ? null // handled separately below
-    : (data.gender === 'male' ? '/aboutmeM.png' : '/aboutMeF.png')
-
-  const hasCustomPhoto = intro?.profileImage && intro.profileImage.trim() !== ''
+export default function About({ data, intro }: { data: AboutMeData; intro?: IntroData }) {
+  const hasCustomPhoto = intro?.profileImage && intro.profileImage.trim() !== '';
+  const genderImage = data.gender === 'male' ? '/aboutmeM.png' : '/aboutMeF.png';
 
   return (
     <section className="section-container" id="AboutMe">
       <div className="about-me-grid">
 
-        {/* Experience card — with profile photo or gender image */}
         <div className='xl:row-span-3'>
           <div className='card'>
-            {hasCustomPhoto ? (
-              <div className='card-image-div'>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={intro.profileImage}
-                  alt="Profile"
-                  className="card-image rounded-md object-cover"
-                />
-              </div>
-            ) : (
-              <div className='card-image-div'>
-                <Image
-                  className="card-image"
-                  src={profileImage!}
-                  alt='Card Image'
-                  height={320}
-                  width={320}
-                />
-              </div>
-            )}
+            <div className='card-image-div'>
+              {hasCustomPhoto ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={intro!.profileImage} alt="Profile" className="card-image rounded-md object-cover" />
+              ) : (
+                <Image className="card-image" src={genderImage} alt="Profile" height={320} width={320} />
+              )}
+            </div>
             <div className='card-title'>{`With ${data.experience.yearsOfExperience}+ years of experience`}</div>
             <div>{data.experience.experienceSummary}</div>
           </div>
@@ -55,7 +39,7 @@ const About = ({ data, intro }: { data: any; intro?: any }) => {
           <Card
             skills={data.skills}
             title="Tech Stack"
-            description="I specialize in a variety of languages, frameworks, and tools that allow me to build robust and scalable applications."
+            description="I specialise in a variety of languages, frameworks, and tools that allow me to build robust and scalable applications."
           />
         </div>
 
@@ -84,7 +68,5 @@ const About = ({ data, intro }: { data: any; intro?: any }) => {
 
       </div>
     </section>
-  )
+  );
 }
-
-export default About

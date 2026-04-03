@@ -120,7 +120,7 @@
     @apply text-xl md:text-3xl mt-3 sm:text-2xl text-center px-4;
   }
   .hero-section-button {
-    @apply border border-zinc-500 px-5 py-3 rounded-md mt-10 flex items-center justify-center hover:bg-zinc-700 font-bold hover:text-white;
+    @apply border border-zinc-500 px-5 py-3 rounded-md mt-10 items-center justify-center hover:bg-zinc-700 font-bold hover:text-white;
   }
   .animate-ping-green {
     @apply animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75;
@@ -140,7 +140,7 @@
 }
 
 .user-form-container {
-  @apply mx-auto mt-10 w-full max-w-2xl px-6 xs:px-4;
+   @apply mx-auto mt-10 justify-items-center w-2/3 xs:px-10;
 }
 
 @layer base {

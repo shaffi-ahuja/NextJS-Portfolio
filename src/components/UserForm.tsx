@@ -77,6 +77,7 @@ export default function UserForm() {
     timeZone: '', passionTitle: '', passionDescription: '', skills: [], email: '',
     contactMeFor: '', projects: [emptyProject()], workExperiences: [emptyWork()],
     github: '', linkedin: '', leetcode: '',
+    showProjects: true, showWorkExperience: true, showContact: true,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [slugStatus, setSlugStatus] = useState<SlugStatus>('idle');
@@ -428,6 +429,26 @@ export default function UserForm() {
           <label htmlFor="leetcode">LeetCode</label>
           <input id="leetcode" className="input" value={form.leetcode} onChange={(e) => set('leetcode', e.target.value)} placeholder="https://leetcode.com/u/yourname" />
         </div>
+
+        <SectionHeading>Sections to show on your portfolio</SectionHeading>
+        <p className="text-sm text-zinc-500 mb-2">Toggle which sections appear on your live portfolio.</p>
+
+        {[
+          { key: 'showProjects', label: 'Projects section' },
+          { key: 'showWorkExperience', label: 'Work experience section' },
+          { key: 'showContact', label: 'Contact form' },
+        ].map(({ key, label }) => (
+          <div key={key} className="flex items-center justify-between py-3 border-b border-zinc-100 dark:border-zinc-800">
+            <span className="text-sm font-medium">{label}</span>
+            <button
+              type="button"
+              onClick={() => set(key as keyof PortfolioFormData, !(form as any)[key])}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${(form as any)[key] ? 'bg-zinc-800 dark:bg-zinc-200' : 'bg-zinc-300 dark:bg-zinc-600'}`}
+            >
+              <span className={`inline-block h-4 w-4 transform rounded-full bg-white dark:bg-black shadow transition-transform ${(form as any)[key] ? 'translate-x-6' : 'translate-x-1'}`} />
+            </button>
+          </div>
+        ))}
 
         <div className="input-div mt-10">
           <button type="submit" disabled={pending || slugStatus === 'taken' || slugStatus === 'invalid'}

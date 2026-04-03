@@ -1,4 +1,10 @@
 const ShaffiAhuja = {
+  features: {
+    showProjects: true,
+    showWorkExperience: true,
+    showContact: true,
+    showBuildSection: true,
+  },
   Intro: {
     FirstName: "Shaffi",
     LastName: "Ahuja",
@@ -10,7 +16,7 @@ const ShaffiAhuja = {
     experience: {
       yearsOfExperience: 5,
       experienceSummary:
-        "I specialise in building scalable, high-performance web applications — from multi-tenant SaaS platforms to GenAI-powered features — with a strong focus on UI consistency, accessibility, and reusable architecture.",
+        "I specialise in building scalable web applications from multi-tenant SaaS platforms to GenAI-powered features with UI consistency, accessibility, and reusable architecture.",
     },
     locationOfWork: {
       timeZone: "any",
