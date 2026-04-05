@@ -77,3 +77,7 @@ export function calculateYearsOfExperience(
   // Round to nearest 0.5, minimum 1
   return Math.max(1, Math.round(years * 2) / 2);
 }
+
+// Re-export getSectionVisibility so ResumePDF can import from utils
+// (avoids RSC boundary issues when importing from schema in pdf components)
+export { getSectionVisibility } from "./schema";

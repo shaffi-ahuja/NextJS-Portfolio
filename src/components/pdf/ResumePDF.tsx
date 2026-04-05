@@ -6,17 +6,14 @@ import {
   StyleSheet,
   Line,
   Svg,
-  Link,
 } from "@react-pdf/renderer";
 import type { Portfolio } from "@/lib/schema";
-import { calculateYearsOfExperience } from "@/lib/utils";
+import { calculateYearsOfExperience, getSectionVisibility } from "@/lib/utils";
 
-// ─── Palette ─────────────────────────────────────────────────────────────────
 const BLACK = "#000000";
 const DARK = "#111111";
 const GREY = "#444444";
 
-// ─── Styles ───────────────────────────────────────────────────────────────────
 const s = StyleSheet.create({
   page: {
     fontFamily: "Helvetica",
@@ -27,8 +24,6 @@ const s = StyleSheet.create({
     paddingHorizontal: 44,
     lineHeight: 1.45,
   },
-
-  // ── Header ──────────────────────────────────────────────────────────────────
   headerRow: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -41,19 +36,13 @@ const s = StyleSheet.create({
     color: BLACK,
     letterSpacing: 0.3,
   },
-  jobTitle: {
-    fontSize: 10,
-    color: GREY,
-    marginTop: 15,
-  },
+  jobTitle: { fontSize: 10, color: GREY, marginTop: 15 },
   contactBlock: {
     textAlign: "right",
     fontSize: 9,
     color: DARK,
     lineHeight: 1.7,
   },
-
-  // ── Section ─────────────────────────────────────────────────────────────────
   section: { marginTop: 10 },
   sectionTitle: {
     fontFamily: "Helvetica-Bold",
@@ -63,37 +52,17 @@ const s = StyleSheet.create({
     color: BLACK,
     marginBottom: 4,
   },
-
-  // ── Summary ──────────────────────────────────────────────────────────────────
   summaryText: { fontSize: 9.5, color: GREY, lineHeight: 1.55 },
-
-  // ── Skills — one row per category ────────────────────────────────────────────
-  skillRow: {
-    flexDirection: "row",
-    marginBottom: 3,
-    paddingLeft: 6,
-  },
-  skillDot: {
-    width: 10,
-    fontSize: 9.5,
-    color: GREY,
-  },
+  skillRow: { flexDirection: "row", marginBottom: 3, paddingLeft: 6 },
+  skillDot: { width: 10, fontSize: 9.5, color: GREY },
   skillCategory: {
     fontFamily: "Helvetica-Bold",
     fontSize: 9.5,
     color: DARK,
-    // Fixed width so values always start at same column
     width: 110,
     flexShrink: 0,
   },
-  skillValue: {
-    flex: 1,
-    fontSize: 9.5,
-    color: GREY,
-    textTransform: "capitalize",
-  },
-
-  // ── Work Experience ───────────────────────────────────────────────────────────
+  skillValue: { flex: 1, fontSize: 9.5, color: GREY },
   workItem: { marginBottom: 10 },
   workHeaderRow: {
     flexDirection: "row",
@@ -113,24 +82,9 @@ const s = StyleSheet.create({
     color: DARK,
     textAlign: "right",
   },
-  bullet: {
-    flexDirection: "row",
-    marginBottom: 2,
-    paddingLeft: 6,
-  },
-  bulletDot: {
-    width: 10,
-    fontSize: 9.5,
-    color: GREY,
-  },
-  bulletText: {
-    flex: 1,
-    fontSize: 9.5,
-    color: GREY,
-    lineHeight: 1.45,
-  },
-
-  // ── Projects ──────────────────────────────────────────────────────────────────
+  bullet: { flexDirection: "row", marginBottom: 2, paddingLeft: 6 },
+  bulletDot: { width: 10, fontSize: 9.5, color: GREY },
+  bulletText: { flex: 1, fontSize: 9.5, color: GREY, lineHeight: 1.45 },
   projectItem: { marginBottom: 8 },
   projectHeaderRow: {
     flexDirection: "row",
@@ -144,26 +98,44 @@ const s = StyleSheet.create({
     color: DARK,
     flex: 1,
   },
-  projectUrl: {
-    fontSize: 8.5,
-    color: GREY,
-    textAlign: "right",
-  },
+  projectUrl: { fontSize: 8.5, color: GREY, textAlign: "right" },
   projectTech: {
     fontSize: 8.5,
     color: GREY,
     fontFamily: "Helvetica-Oblique",
     marginBottom: 2,
-    textTransform: "capitalize",
   },
-  projectDesc: {
+  projectDesc: { fontSize: 9.5, color: GREY, lineHeight: 1.45 },
+  eduItem: { marginBottom: 8 },
+  eduHeaderRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+  },
+  eduMain: {
+    fontFamily: "Helvetica-Bold",
     fontSize: 9.5,
-    color: GREY,
-    lineHeight: 1.45,
+    color: DARK,
+    flex: 1,
   },
+  eduDates: { fontSize: 9, color: GREY, textAlign: "right" },
+  eduSub: { fontSize: 9, color: GREY, marginTop: 1 },
+  certItem: { marginBottom: 6 },
+  certHeaderRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+  },
+  certName: {
+    fontFamily: "Helvetica-Bold",
+    fontSize: 9.5,
+    color: DARK,
+    flex: 1,
+  },
+  certDate: { fontSize: 9, color: GREY, textAlign: "right" },
+  certOrg: { fontSize: 9, color: GREY, marginTop: 1 },
 });
 
-// ─── Divider ──────────────────────────────────────────────────────────────────
 function Divider() {
   return (
     <View style={{ marginBottom: 6 }}>
@@ -174,15 +146,14 @@ function Divider() {
   );
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-function formatDuration(work: Portfolio["WorkExperience"][0]): string {
+function formatWork(work: Portfolio["WorkExperience"][0]): string {
   const start = [work.startMonth, work.startYear].filter(Boolean).join(" ");
   if (work.isCurrentJob) return `${start} - Present`;
   const end = [work.endMonth, work.endYear].filter(Boolean).join(" ");
   return end ? `${start} - ${end}` : start;
 }
 
-function stripMarkdown(text: string): string {
+function strip(text: string): string {
   return text
     .replace(/\*\*(.*?)\*\*/g, "$1")
     .replace(/\*(.*?)\*/g, "$1")
@@ -191,11 +162,8 @@ function stripMarkdown(text: string): string {
     .trim();
 }
 
-// ─── Skill category builder ───────────────────────────────────────────────────
-function buildSkillCategories(
-  skills: string[],
-): { label: string; value: string }[] {
-  const map: { label: string; keywords: string[] }[] = [
+function buildSkillCategories(skills: string[]) {
+  const map = [
     {
       label: "Frontend",
       keywords: [
@@ -211,7 +179,6 @@ function buildSkillCategories(
         "angular",
         "svelte",
         "vue",
-        "css",
       ],
     },
     {
@@ -228,21 +195,13 @@ function buildSkillCategories(
     },
     {
       label: "Tools & DevOps",
-      keywords: [
-        "git",
-        "docker",
-        "aws",
-        "terraform",
-        "ci",
-        "cd",
-        "webpack",
-        "vite",
-      ],
+      keywords: ["git", "docker", "aws", "terraform", "webpack", "vite"],
     },
     {
       label: "Backend",
       keywords: [
         "dotnet",
+        "cs",
         "python",
         "sqlite",
         "node",
@@ -252,83 +211,78 @@ function buildSkillCategories(
       ],
     },
   ];
-
   const used = new Set<string>();
   const result: { label: string; value: string }[] = [];
-
   for (const { label, keywords } of map) {
-    const matched = skills.filter((s) => {
-      const sl = s.toLowerCase();
-      return keywords.some((k) => sl.includes(k));
-    });
+    const matched = skills.filter((s) =>
+      keywords.some((k) => s.toLowerCase().includes(k)),
+    );
     if (matched.length) {
       matched.forEach((s) => used.add(s));
       result.push({ label, value: matched.join(", ") });
     }
   }
-
   const extras = skills.filter((s) => !used.has(s));
   if (extras.length) result.push({ label: "Other", value: extras.join(", ") });
-
   return result;
 }
 
-// ─── Document ─────────────────────────────────────────────────────────────────
+const EDU_TYPE: Record<string, string> = {
+  degree: "",
+  "12th": "Class XII —",
+  "10th": "Class X —",
+  diploma: "Diploma —",
+  other: "",
+};
+
 export default function ResumePDF({ portfolio }: { portfolio: Portfolio }) {
-  const {
-    Intro,
-    AboutMe,
-    WorkExperience,
-    Projects,
-    Footer: FooterData,
-  } = portfolio;
+  const { Intro, AboutMe, WorkExperience, Projects, Footer: Foot } = portfolio;
+  const Education = portfolio.Education ?? [];
+  const Certs = portfolio.Certifications ?? [];
+
+  // Resolve section visibility for resume
+  const vis = getSectionVisibility(portfolio);
 
   const years = calculateYearsOfExperience(WorkExperience);
   const yearsDisplay = Number.isInteger(years) ? `${years}` : years.toFixed(1);
   const fullName = `${Intro.FirstName} ${Intro.LastName}`;
-  const skillCategories = buildSkillCategories(AboutMe.skills);
-
-  const summary =
-    `Frontend Developer with ${yearsDisplay}+ years of experience. ` +
-    stripMarkdown(AboutMe.experience.experienceSummary);
+  const skillCats = buildSkillCategories(AboutMe.skills);
+  const summary = `Frontend Developer with ${yearsDisplay}+ years of experience. ${strip(AboutMe.experience.experienceSummary)}`;
 
   return (
     <Document title={`${fullName} — Resume`} author={fullName} subject="Resume">
       <Page size="A4" style={s.page}>
-        {/* ── Header ── */}
+        {/* Header */}
         <View style={s.headerRow}>
           <View>
             <Text style={s.name}>{fullName}</Text>
             <Text style={s.jobTitle}>{Intro.OneLinerIntro}</Text>
           </View>
           <View style={s.contactBlock}>
-            {FooterData?.github && (
-              <Link>{FooterData.github.replace("https://", "")}</Link>
+            {Intro.phone && <Text>{Intro.phone}</Text>}
+            {AboutMe.email && <Text>{AboutMe.email}</Text>}
+            {Foot?.github && <Text>{Foot.github.replace("https://", "")}</Text>}
+            {Foot?.linkedin && (
+              <Text>{Foot.linkedin.replace("https://", "")}</Text>
             )}
-            {FooterData?.linkedin && (
-              <Link>{FooterData.linkedin.replace("https://", "")}</Link>
-            )}
-            <Link href={`mailto:${AboutMe.email}`}>{AboutMe.email}</Link>
           </View>
         </View>
 
-        {/* ── Professional Summary ── */}
+        {/* Summary */}
         <View style={s.section}>
           <Text style={s.sectionTitle}>Professional Summary</Text>
           <Divider />
           <Text style={s.summaryText}>{summary}</Text>
         </View>
 
-        {/* ── Skills ── */}
-        {skillCategories.length > 0 && (
+        {/* Skills */}
+        {skillCats.length > 0 && (
           <View style={s.section}>
             <Text style={s.sectionTitle}>Skills</Text>
             <Divider />
-            {skillCategories.map((cat) => (
+            {skillCats.map((cat) => (
               <View key={cat.label} style={s.skillRow}>
                 <Text style={s.skillDot}>•</Text>
-                {/* Category label and value as SEPARATE Text nodes in a row —
-                    avoids react-pdf hyphenating mixed bold/normal inline text */}
                 <Text style={s.skillCategory}>{cat.label}:</Text>
                 <Text style={s.skillValue}>{cat.value}</Text>
               </View>
@@ -336,26 +290,26 @@ export default function ResumePDF({ portfolio }: { portfolio: Portfolio }) {
           </View>
         )}
 
-        {/* ── Work Experience ── */}
-        {WorkExperience.length > 0 && (
+        {/* Work Experience */}
+        {vis.showWorkInResume && WorkExperience.length > 0 && (
           <View style={s.section}>
             <Text style={s.sectionTitle}>Work Experience</Text>
             <Divider />
-            {WorkExperience.map((work, i) => (
+            {WorkExperience.map((w, i) => (
               <View key={i} style={s.workItem}>
                 <View style={s.workHeaderRow}>
                   <Text style={s.workCompanyRole}>
-                    {work.company} — {work.title}
+                    {w.company} — {w.title}
                   </Text>
-                  <Text style={s.workDates}>{formatDuration(work)}</Text>
+                  <Text style={s.workDates}>{formatWork(w)}</Text>
                 </View>
-                {work.description
+                {w.description
                   .split("\n")
                   .filter(Boolean)
                   .map((line, j) => (
                     <View key={j} style={s.bullet}>
                       <Text style={s.bulletDot}>•</Text>
-                      <Text style={s.bulletText}>{stripMarkdown(line)}</Text>
+                      <Text style={s.bulletText}>{strip(line)}</Text>
                     </View>
                   ))}
               </View>
@@ -363,29 +317,75 @@ export default function ResumePDF({ portfolio }: { portfolio: Portfolio }) {
           </View>
         )}
 
-        {/* ── Projects ── */}
-        {Projects && Projects.length > 0 && (
+        {/* Projects */}
+        {vis.showProjectsInResume && Projects && Projects.length > 0 && (
           <View style={s.section}>
             <Text style={s.sectionTitle}>Projects</Text>
             <Divider />
-            {Projects.map((project, i) => (
+            {Projects.map((p, i) => (
               <View key={i} style={s.projectItem}>
                 <View style={s.projectHeaderRow}>
-                  <Text style={s.projectTitle}>{project.title}</Text>
-                  {project.link && (
-                    <Link style={s.projectUrl}>
-                      {project.link.replace(/^https?:\/\//, "")}
-                    </Link>
+                  <Text style={s.projectTitle}>{p.title}</Text>
+                  {p.link && (
+                    <Text style={s.projectUrl}>
+                      {p.link.replace(/^https?:\/\//, "")}
+                    </Text>
                   )}
                 </View>
-                {project.techstack.length > 0 && (
-                  <Text style={s.projectTech}>
-                    {project.techstack.join(", ")}
-                  </Text>
+                {p.techstack.length > 0 && (
+                  <Text style={s.projectTech}>{p.techstack.join(", ")}</Text>
                 )}
                 <Text style={s.projectDesc}>
-                  {stripMarkdown(project.description.split("\n\n")[0])}
+                  {strip(p.description.split("\n\n")[0])}
                 </Text>
+              </View>
+            ))}
+          </View>
+        )}
+
+        {/* Education */}
+        {vis.showEducationInResume && Education.length > 0 && (
+          <View style={s.section}>
+            <Text style={s.sectionTitle}>Education</Text>
+            <Divider />
+            {Education.map((edu, i) => (
+              <View key={i} style={s.eduItem}>
+                <View style={s.eduHeaderRow}>
+                  <Text style={s.eduMain}>
+                    {EDU_TYPE[edu.type] ? `${EDU_TYPE[edu.type]} ` : ""}
+                    {edu.institutionName}
+                  </Text>
+                  {(edu.startYear || edu.endYear) && (
+                    <Text style={s.eduDates}>
+                      {[edu.startYear, edu.endYear].filter(Boolean).join(" — ")}
+                    </Text>
+                  )}
+                </View>
+                {edu.fieldOfStudy && (
+                  <Text style={s.eduSub}>{edu.fieldOfStudy}</Text>
+                )}
+                {(edu.grade || edu.location) && (
+                  <Text style={s.eduSub}>
+                    {[edu.grade, edu.location].filter(Boolean).join(" · ")}
+                  </Text>
+                )}
+              </View>
+            ))}
+          </View>
+        )}
+
+        {/* Certifications */}
+        {vis.showCertsInResume && Certs.length > 0 && (
+          <View style={s.section}>
+            <Text style={s.sectionTitle}>Certifications</Text>
+            <Divider />
+            {Certs.map((c, i) => (
+              <View key={i} style={s.certItem}>
+                <View style={s.certHeaderRow}>
+                  <Text style={s.certName}>{c.name}</Text>
+                  {c.date && <Text style={s.certDate}>{c.date}</Text>}
+                </View>
+                <Text style={s.certOrg}>{c.organization}</Text>
               </View>
             ))}
           </View>

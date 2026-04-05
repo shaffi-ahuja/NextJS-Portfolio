@@ -5,12 +5,21 @@ const ShaffiAhuja = {
     showContact: true,
     showBuildSection: true,
   },
+  sections: {
+    projects:       { showInResume: true,  showInPortfolio: true },
+    workExperience: { showInResume: true,  showInPortfolio: true },
+    education:      { showInResume: true,  showInPortfolio: true },
+    certifications: { showInResume: true,  showInPortfolio: true },
+    contact:        { showInResume: false, showInPortfolio: true },
+    buildSection:   { showInPortfolio: true },
+  },
   Intro: {
     FirstName: "Shaffi",
     LastName: "Ahuja",
     OneLinerIntro: "Senior Frontend Developer · React · Next.js · TypeScript",
     Theme: "dark",
-    profileImage:''
+    profileImage: "",
+    phone: "+91-XXXXXXXXXX",
   },
   AboutMe: {
     gender: "female",
@@ -27,20 +36,12 @@ const ShaffiAhuja = {
       passionTitle: "Crafting Exceptional UIs",
       passionDescription:
         "I care deeply about the details that make a product feel great — perceived performance, accessibility, and design consistency. Frontend isn't just presentation to me; it's the product. I enjoy owning complex UI problems end-to-end and building things that scale.",
+      description:
+        "I care deeply about the details that make a product feel great — perceived performance, accessibility, and design consistency. Frontend isn't just presentation to me; it's the product. I enjoy owning complex UI problems end-to-end and building things that scale.",
     },
     skills: [
-      "react",
-      "typescript",
-      "javascript",
-      "html",
-      "css",
-      "next",
-      "redux",
-      "mui",
-      "bootstrap",
-      "tailwind",
-      "git",
-      "figma",
+      "react", "typescript", "javascript", "html", "css", "next",
+      "redux", "mui", "bootstrap", "tailwind", "git", "figma",
     ],
     email: "shaffi.ahuja@gmail.com",
   },
@@ -93,6 +94,25 @@ const ShaffiAhuja = {
       title: "Project Engineer",
       startMonth: "August", startYear: "2019", endMonth: "January", endYear: "2022", isCurrentJob: false,
       description: `Developed multiple enterprise portals on Wipro's in-house devNXT platform — COE Governance, Project Management, MyLearning, SME Dashboard, and more.\nBuilt UI for NHS application with login, document creation, approval workflows, and admin functionalities.\nEnhanced UI for enterprise clients including Oracle and UBS, improving usability and performance.\nCreated 10+ automated rules for a remediation tool, reducing manual code review effort significantly.\nDeveloped features for analytics, reports, forum interactions, blogs, and notifications.`,
+    },
+  ],
+  Education: [
+    {
+      type: "degree",
+      institutionName: "Your University Name",
+      fieldOfStudy: "Bachelor of Technology — Computer Science",
+      startYear: "2015",
+      endYear: "2019",
+      grade: "7.5 CGPA",
+      location: "Haryana, India",
+    },
+  ],
+  Certifications: [
+    {
+      name: "React — The Complete Guide",
+      organization: "Udemy",
+      date: "2021",
+      credentialUrl: "",
     },
   ],
   Footer: {
