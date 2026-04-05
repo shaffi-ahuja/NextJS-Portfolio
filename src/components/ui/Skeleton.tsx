@@ -1,5 +1,5 @@
 // RSC-safe — pure CSS, no client JS needed
-export function SkeletonBlock({ className = "" }: { className?: string }) {
+export function SkeletonBlock({ className = '' }: { className?: string }) {
   return (
     <div
       className={`animate-pulse bg-zinc-200 dark:bg-zinc-800 rounded-md ${className}`}

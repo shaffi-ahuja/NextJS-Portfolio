@@ -44,7 +44,7 @@ export default async function UserLayout({ params, children }: Props) {
 
   return (
     <div className="antialiased text-black bg-white dark:text-white dark:bg-black font-sans">
-      <Navbar data={Intro} />
+      <Navbar data={Intro} resumeSlug={id} />
       {children}
       <Footer data={FooterData} />
     </div>

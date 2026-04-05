@@ -10,6 +10,7 @@ const ShaffiAhuja = {
     LastName: "Ahuja",
     OneLinerIntro: "Senior Frontend Developer · React · Next.js · TypeScript",
     Theme: "dark",
+    profileImage:''
   },
   AboutMe: {
     gender: "female",
@@ -24,7 +25,7 @@ const ShaffiAhuja = {
     },
     passion: {
       passionTitle: "Crafting Exceptional UIs",
-      description:
+      passionDescription:
         "I care deeply about the details that make a product feel great — perceived performance, accessibility, and design consistency. Frontend isn't just presentation to me; it's the product. I enjoy owning complex UI problems end-to-end and building things that scale.",
     },
     skills: [

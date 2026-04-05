@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, { useEffect, useState } from "react";
 
 const ToggleButton = () => {
@@ -37,14 +37,14 @@ const ToggleButton = () => {
     >
       {/* Sun icon — light mode */}
       <span
-        className={`absolute left-1 text-yellow-400 text-xs transition-opacity duration-200 ${isDark ? "opacity-0" : "opacity-100"}`}
+        className={`absolute left-1 text-yellow-400 text-xs transition-opacity duration-200 ${isDark ? 'opacity-0' : 'opacity-100'}`}
         aria-hidden="true"
       >
         ☀
       </span>
       {/* Moon icon — dark mode */}
       <span
-        className={`absolute right-1 text-blue-200 text-xs transition-opacity duration-200 ${isDark ? "opacity-100" : "opacity-0"}`}
+        className={`absolute right-1 text-blue-200 text-xs transition-opacity duration-200 ${isDark ? 'opacity-100' : 'opacity-0'}`}
         aria-hidden="true"
       >
         ☾

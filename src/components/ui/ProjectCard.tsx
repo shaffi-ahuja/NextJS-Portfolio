@@ -27,7 +27,7 @@ const ProjectCard = ({
   const hasLink = link && link.trim() !== ''
 
   return (
-    <div className='project-card-container'>
+    <div className='project-card-container w-full'>
       <div className='flex flex-col h-full'>
 
         {/* Icon or default */}

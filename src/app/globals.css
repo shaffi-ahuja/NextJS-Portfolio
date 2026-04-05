@@ -36,11 +36,11 @@ html {
 }
 @layer utilities {
   .card {
-    @apply border-zinc-800 border rounded-md py-2 h-full flex flex-col px-3 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
+    @apply border-zinc-800 border rounded-md py-2 h-full flex flex-col px-3 transition-shadow duration-200 hover:shadow-lg;
   }
 
   .card-image-div {
-    @apply flex-grow -mb-24 xs:-mb-10;
+    @apply flex-grow mb-3;
   }
   .card-image {
     @apply mx-auto w-full xs:mb-1;
@@ -106,7 +106,7 @@ html {
   }
 
   .project-card-container {
-    @apply border-zinc-300 dark:border-zinc-700 border rounded-md p-5 h-fit pb-10 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
+    @apply border-zinc-300 dark:border-zinc-700 border rounded-md p-5 h-full pb-10 transition-shadow duration-200 hover:shadow-lg;
   }
   .toast {
     @apply text-white border rounded-md w-fit p-3 h-fit px-10 fixed right-5 bottom-16 text-center content-center text-lg z-50;

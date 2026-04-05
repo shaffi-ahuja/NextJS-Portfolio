@@ -51,7 +51,7 @@ export const PortfolioSchema = z.object({
   AboutMe: z.object({
     gender: z.enum(["male", "female", "other"]),
     experience: z.object({
-      yearsOfExperience: z.number().min(0).max(50),
+      yearsOfExperience: z.number().min(0).max(50).optional().default(0), // computed at render time
       experienceSummary: z.string().min(20, "Summary must be at least 20 characters"),
     }),
     locationOfWork: z.object({
@@ -104,7 +104,6 @@ export type PortfolioFormData = {
   oneLinerIntro: string;
   theme: "light" | "dark";
   gender: "male" | "female" | "other";
-  yearsOfExperience: number;
   experienceSummary: string;
   locatedAt: string;
   timeZone: string;
@@ -154,7 +153,7 @@ export function formDataToPortfolio(data: PortfolioFormData): Portfolio {
     AboutMe: {
       gender: data.gender,
       experience: {
-        yearsOfExperience: data.yearsOfExperience,
+        yearsOfExperience: 0, // computed dynamically from WorkExperience
         experienceSummary: data.experienceSummary,
       },
       locationOfWork: { timeZone: data.timeZone, locatedAt: data.locatedAt },

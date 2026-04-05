@@ -1,14 +1,8 @@
-"use client";
-import React from "react";
-import ProjectCard from "./ui/ProjectCard";
-import AnimatedSection from "./ui/AnimatedSection";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "./ui/Carousel";
+'use client';
+import React from 'react';
+import ProjectCard from './ui/ProjectCard';
+import AnimatedSection from './ui/AnimatedSection';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/Carousel';
 
 export default function Projects({ data }: { data: any[] }) {
   if (!data || data.length === 0) return null;
@@ -16,12 +10,12 @@ export default function Projects({ data }: { data: any[] }) {
 
   return (
     <AnimatedSection className="section-container" direction="up" id="Projects">
-      <h1 className="section-heading">My Recent Work</h1>
-      <div className="px-10">
-        <Carousel className="carousel-container" aria-label="Project showcase">
-          <CarouselContent>
+      <h1 className='section-heading'>My Recent Work</h1>
+      <div className='px-10'>
+        <Carousel className='carousel-container' aria-label="Project showcase">
+          <CarouselContent className="items-stretch">
             {data.map((project: any) => (
-              <CarouselItem key={project.title}>
+              <CarouselItem key={project.title} className="flex">
                 <ProjectCard
                   icon={project.icon}
                   title={project.title}

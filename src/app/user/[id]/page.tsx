@@ -1,4 +1,4 @@
-// RSC — fetches data server-side, renders schema-driven layout
+// RSC — fetches data server-side, schema-driven layout
 import { getPortfolio, incrementViews } from "@/lib/storage";
 import { notFound } from "next/navigation";
 import Hero from "@/components/Hero";
@@ -27,22 +27,17 @@ interface Props {
 export default async function UserPortfolioPage({ params }: Props) {
   const { id } = await params;
 
-  // 1. Upstash first (form users)
   let userData: Portfolio | null = await getPortfolio(id);
-  // 2. Legacy static fallback
   if (!userData) userData = await getLegacyUser(id);
-  // 3. 404
   if (!userData) notFound();
 
-  // Track views — fire and forget
   incrementViews(id).catch(() => {});
 
-  // Feature flags — default all true for legacy users without flags
   const features = userData.features ?? {
     showProjects: true,
     showWorkExperience: true,
     showContact: true,
-    showBuildSection: false, // don't show "build your own" on user portfolios by default
+    showBuildSection: false,
   };
 
   const { Intro, AboutMe, Projects: MyProjects, WorkExperience: MyWork, ContactMe: MyContact } = userData;
@@ -50,7 +45,13 @@ export default async function UserPortfolioPage({ params }: Props) {
   return (
     <>
       {Intro && <Hero data={Intro} />}
-      {AboutMe && <About data={AboutMe} intro={Intro} />}
+      {AboutMe && (
+        <About
+          data={AboutMe}
+          intro={Intro}
+          workExperience={MyWork}
+        />
+      )}
       {features.showProjects && MyProjects && MyProjects.length > 0 && (
         <Projects data={MyProjects} />
       )}
@@ -58,9 +59,7 @@ export default async function UserPortfolioPage({ params }: Props) {
         <WorkExperience data={MyWork} />
       )}
       {features.showBuildSection && <BuildPortfolio />}
-      {features.showContact && MyContact && (
-        <ContactMe data={MyContact} />
-      )}
+      {features.showContact && MyContact && <ContactMe data={MyContact} />}
     </>
   );
 }

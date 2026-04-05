@@ -1,4 +1,4 @@
-// RSC — data fetching happens at build/request time, no client JS needed
+// RSC — data fetching happens at build/request time
 import About from "@/components/About";
 import BuildPortfolio from "@/components/BuildPortfolio";
 import ContactMe from "@/components/ContactMe";
@@ -8,7 +8,6 @@ import WorkExperience from "@/components/WorkExperience";
 import ShaffiAhuja from "@/data/ShaffiAhuja";
 
 export default function Home() {
-  // Feature flags — Shaffi's own portfolio shows everything
   const features = ShaffiAhuja.features ?? {
     showProjects: true,
     showWorkExperience: true,
@@ -19,7 +18,11 @@ export default function Home() {
   return (
     <>
       <Hero data={ShaffiAhuja.Intro} />
-      <About data={ShaffiAhuja.AboutMe} intro={ShaffiAhuja.Intro} />
+      <About
+        data={ShaffiAhuja.AboutMe}
+        intro={ShaffiAhuja.Intro}
+        workExperience={ShaffiAhuja.WorkExperience}
+      />
       {features.showProjects && ShaffiAhuja.Projects && (
         <Projects data={ShaffiAhuja.Projects} />
       )}
@@ -27,9 +30,7 @@ export default function Home() {
         <WorkExperience data={ShaffiAhuja.WorkExperience} />
       )}
       {features.showBuildSection && <BuildPortfolio />}
-      {features.showContact && (
-        <ContactMe data={ShaffiAhuja.ContactMe} />
-      )}
+      {features.showContact && <ContactMe data={ShaffiAhuja.ContactMe} />}
     </>
   );
 }
