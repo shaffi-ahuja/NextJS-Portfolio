@@ -8,6 +8,7 @@ import Education from "@/components/Education";
 import Certifications from "@/components/Certifications";
 import ContactMe from "@/components/ContactMe";
 import BuildPortfolio from "@/components/BuildPortfolio";
+import ViewsToast from "@/components/ui/ViewsToast";
 import type { Portfolio } from "@/lib/schema";
 import { getSectionVisibility } from "@/lib/schema";
 
@@ -22,30 +23,56 @@ async function getLegacyUser(id: string): Promise<Portfolio | null> {
   return mod.default as Portfolio;
 }
 
-export default async function UserPortfolioPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function UserPortfolioPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
 
   let userData: Portfolio | null = await getPortfolio(id);
   if (!userData) userData = await getLegacyUser(id);
   if (!userData) notFound();
 
+  // Increment views server-side (fire and forget)
   incrementViews(id).catch(() => {});
 
   const vis = getSectionVisibility(userData);
-  const { Intro, AboutMe, Projects: MyProjects, WorkExperience: MyWork, ContactMe: MyContact } = userData;
-  const Education_data   = userData.Education   ?? [];
-  const Certs_data       = userData.Certifications ?? [];
+  const {
+    Intro,
+    AboutMe,
+    Projects: MyProjects,
+    WorkExperience: MyWork,
+    ContactMe: MyContact,
+  } = userData;
+  const Education_data = userData.Education ?? [];
+  const Certs_data = userData.Certifications ?? [];
 
   return (
     <>
-      {Intro   && <Hero data={Intro} />}
-      {AboutMe && <About data={AboutMe} intro={Intro} workExperience={MyWork} />}
-      {vis.showProjectsInPortfolio && MyProjects && MyProjects.length > 0 && <Projects data={MyProjects} />}
-      {vis.showWorkInPortfolio     && MyWork     && MyWork.length > 0       && <WorkExperience data={MyWork} />}
-      {vis.showEducationInPortfolio && Education_data.length > 0            && <Education data={Education_data} />}
-      {vis.showCertsInPortfolio    && Certs_data.length > 0                 && <Certifications data={Certs_data} />}
-      {vis.showBuildSection        && <BuildPortfolio />}
-      {vis.showContactInPortfolio  && MyContact                             && <ContactMe data={MyContact} />}
+      {/* Views toast — client component, fetches count independently */}
+      <ViewsToast slug={id} />
+
+      {Intro && <Hero data={Intro} />}
+      {AboutMe && (
+        <About data={AboutMe} intro={Intro} workExperience={MyWork} />
+      )}
+      {vis.showProjectsInPortfolio && MyProjects && MyProjects.length > 0 && (
+        <Projects data={MyProjects} />
+      )}
+      {vis.showWorkInPortfolio && MyWork && MyWork.length > 0 && (
+        <WorkExperience data={MyWork} />
+      )}
+      {vis.showEducationInPortfolio && Education_data.length > 0 && (
+        <Education data={Education_data} />
+      )}
+      {vis.showCertsInPortfolio && Certs_data.length > 0 && (
+        <Certifications data={Certs_data} />
+      )}
+      {vis.showBuildSection && <BuildPortfolio />}
+      {vis.showContactInPortfolio && MyContact && (
+        <ContactMe data={MyContact} />
+      )}
     </>
   );
 }

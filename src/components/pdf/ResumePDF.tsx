@@ -62,7 +62,7 @@ const s = StyleSheet.create({
     width: 110,
     flexShrink: 0,
   },
-  skillValue: { flex: 1, fontSize: 9.5, color: GREY },
+  skillValue: { flex: 1, fontSize: 9.5, color: GREY ,textTransform:'capitalize'},
   workItem: { marginBottom: 10 },
   workHeaderRow: {
     flexDirection: "row",
@@ -104,6 +104,7 @@ const s = StyleSheet.create({
     color: GREY,
     fontFamily: "Helvetica-Oblique",
     marginBottom: 2,
+    textTransform: "capitalize",
   },
   projectDesc: { fontSize: 9.5, color: GREY, lineHeight: 1.45 },
   eduItem: { marginBottom: 8 },
