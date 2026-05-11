@@ -5,16 +5,14 @@ const PortfolioTemplate = {
     showContact: true,
     showBuildSection: true,
   },
-
   sections: {
-    projects:       { showInResume: true,  showInPortfolio: true },
-    workExperience: { showInResume: true,  showInPortfolio: true },
-    education:      { showInResume: true,  showInPortfolio: true },
-    certifications: { showInResume: true,  showInPortfolio: true },
-    contact:        { showInResume: false, showInPortfolio: true },
-    buildSection:   { showInPortfolio: true },
+    projects: { showInResume: true, showInPortfolio: true },
+    workExperience: { showInResume: true, showInPortfolio: true },
+    education: { showInResume: true, showInPortfolio: true },
+    certifications: { showInResume: true, showInPortfolio: true },
+    contact: { showInResume: false, showInPortfolio: true },
+    buildSection: { showInPortfolio: true },
   },
-
   Intro: {
     FirstName: "John",
     LastName: "Doe",
@@ -23,7 +21,6 @@ const PortfolioTemplate = {
     profileImage: "/profile.jpg",
     phone: "+91-9876543210",
   },
-
   AboutMe: {
     gender: "male",
     experience: {
@@ -31,18 +28,12 @@ const PortfolioTemplate = {
       experienceSummary:
         "Frontend developer specialising in scalable web apps, reusable component systems, and performance optimisation.",
     },
-
-    locationOfWork: {
-      timeZone: "IST",
-      locatedAt: "Delhi, India",
-    },
-
+    locationOfWork: { timeZone: "IST", locatedAt: "Delhi, India" },
     passion: {
       passionTitle: "Building Delightful User Experiences",
       passionDescription:
         "I enjoy crafting fast, accessible, and visually consistent interfaces that users love.",
     },
-
     skills: [
       "react",
       "typescript",
@@ -56,20 +47,18 @@ const PortfolioTemplate = {
       "git",
       "figma",
     ],
-
     email: "john.doe@example.com",
   },
-
   ContactMe: {
     contactMeFor:
       "Open to freelance projects, full-time roles, or collaborations.",
     email: "john.doe@example.com",
   },
-
   Projects: [
     {
       icon: "/project1.png",
       title: "E-commerce Dashboard",
+      role: "Frontend Developer",
       description: `Admin dashboard with analytics, order management, and role-based access.
 
 Features:
@@ -78,11 +67,12 @@ Features:
 - Responsive UI`,
       techstack: ["react", "typescript", "tailwind"],
       link: "https://example.com/dashboard",
+      githubUrl: "",
     },
-
     {
       icon: "/project2.png",
       title: "SaaS Landing Page",
+      role: "Frontend Developer",
       description: `High-converting marketing website built with modern UI practices.
 
 Features:
@@ -91,27 +81,29 @@ Features:
 - Reusable components`,
       techstack: ["next", "typescript", "tailwind"],
       link: "https://example.com/landing",
+      githubUrl: "",
     },
-
     {
       icon: "/project3.png",
       title: "Chat Application",
+      role: "Full Stack Developer",
       description: `Realtime chat app with notifications and message persistence.
 
 Features:
 - WebSocket integration
 - User presence tracking
 - Clean UI`,
-      techstack: ["react", "node", "socket"],
+      techstack: ["react", "node", "sqlite"],
       link: "https://example.com/chat",
+      githubUrl: "",
     },
   ],
-
   WorkExperience: [
     {
       image: "/company1.png",
       company: "ABC Tech",
       title: "Frontend Developer",
+      location: "Delhi, India",
       startMonth: "June",
       startYear: "2022",
       endMonth: "",
@@ -121,11 +113,11 @@ Features:
 Improved performance by 30% through code splitting and lazy loading.
 Collaborated with designers to implement pixel-perfect UI.`,
     },
-
     {
       image: "/company2.png",
       company: "XYZ Solutions",
       title: "Software Engineer",
+      location: "Remote",
       startMonth: "Jan",
       startYear: "2020",
       endMonth: "May",
@@ -136,7 +128,6 @@ Worked on enterprise dashboards and internal tools.
 Improved development speed by introducing component libraries.`,
     },
   ],
-
   Education: [
     {
       type: "degree",
@@ -148,7 +139,6 @@ Improved development speed by introducing component libraries.`,
       location: "India",
     },
   ],
-
   Certifications: [
     {
       name: "Full Stack Web Development",
@@ -157,7 +147,6 @@ Improved development speed by introducing component libraries.`,
       credentialUrl: "https://example.com/certificate",
     },
   ],
-
   Footer: {
     FirstName: "John",
     LastName: "Doe",

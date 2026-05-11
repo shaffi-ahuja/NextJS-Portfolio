@@ -19,9 +19,11 @@ export default function Projects({ data }: { data: any[] }) {
                 <ProjectCard
                   icon={project.icon}
                   title={project.title}
+                  role={project.role}
                   description={project.description}
                   techstack={project.techstack}
                   link={project.link}
+                  githubUrl={project.githubUrl}
                 />
               </CarouselItem>
             ))}

@@ -62,7 +62,12 @@ const s = StyleSheet.create({
     width: 110,
     flexShrink: 0,
   },
-  skillValue: { flex: 1, fontSize: 9.5, color: GREY ,textTransform:'capitalize'},
+  skillValue: {
+    flex: 1,
+    fontSize: 9.5,
+    color: GREY,
+    textTransform: "capitalize",
+  },
   workItem: { marginBottom: 10 },
   workHeaderRow: {
     flexDirection: "row",
@@ -307,7 +312,7 @@ export default function ResumePDF({ portfolio }: { portfolio: Portfolio }) {
                 {w.description
                   .split("\n")
                   .filter(Boolean)
-                  .map((line, j) => (
+                  .map((line: string, j: number) => (
                     <View key={j} style={s.bullet}>
                       <Text style={s.bulletDot}>•</Text>
                       <Text style={s.bulletText}>{strip(line)}</Text>
@@ -323,24 +328,27 @@ export default function ResumePDF({ portfolio }: { portfolio: Portfolio }) {
           <View style={s.section}>
             <Text style={s.sectionTitle}>Projects</Text>
             <Divider />
-            {Projects.map((p, i) => (
-              <View key={i} style={s.projectItem}>
-                <View style={s.projectHeaderRow}>
-                  <Text style={s.projectTitle}>{p.title}</Text>
-                  {p.link && (
-                    <Text style={s.projectUrl}>
-                      {p.link.replace(/^https?:\/\//, "")}
-                    </Text>
+            {Projects.map((p, i) => {
+              const displayUrl = p.link || p.githubUrl || "";
+              return (
+                <View key={i} style={s.projectItem}>
+                  <View style={s.projectHeaderRow}>
+                    <Text style={s.projectTitle}>{p.title}</Text>
+                    {displayUrl && (
+                      <Text style={s.projectUrl}>
+                        {displayUrl.replace(/^https?:\/\//, "")}
+                      </Text>
+                    )}
+                  </View>
+                  {p.techstack.length > 0 && (
+                    <Text style={s.projectTech}>{p.techstack.join(", ")}</Text>
                   )}
+                  <Text style={s.projectDesc}>
+                    {strip(p.description.split("\n\n")[0])}
+                  </Text>
                 </View>
-                {p.techstack.length > 0 && (
-                  <Text style={s.projectTech}>{p.techstack.join(", ")}</Text>
-                )}
-                <Text style={s.projectDesc}>
-                  {strip(p.description.split("\n\n")[0])}
-                </Text>
-              </View>
-            ))}
+              );
+            })}
           </View>
         )}
 

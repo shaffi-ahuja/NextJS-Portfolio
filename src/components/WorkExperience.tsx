@@ -1,4 +1,4 @@
-// RSC shell — AnimatedSection is client
+// RSC — pure display
 import WorkCard from './ui/WorkCard';
 import AnimatedSection from './ui/AnimatedSection';
 import { WorkExperienceItem } from '@/lib/schema';
@@ -16,6 +16,7 @@ export default function WorkExperience({ data }: { data: WorkExperienceItem[] })
               image={work.image}
               company={work.company}
               title={work.title}
+              location={work.location}
               startMonth={work.startMonth}
               startYear={work.startYear}
               endMonth={work.endMonth}

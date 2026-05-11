@@ -10,16 +10,13 @@ const NimishMadan = {
     experience: {
       yearsOfExperience: 5,
       experienceSummary:
-        "I am Enthusiastic software engineer participating in the complete product development lifecycle of successfully launched applications.",
+        "Enthusiastic software engineer participating in the complete product development lifecycle of successfully launched applications.",
     },
-    locationOfWork: {
-      timeZone: "any",
-      locatedAt: "Haryana, India",
-    },
+    locationOfWork: { timeZone: "any", locatedAt: "Haryana, India" },
     passion: {
       passionTitle: "Coding",
       description:
-        "I love solving problems and building things through code. Programming isn't just my profession—it's my passion. I enjoy exploring new technologies and enhancing my skills.",
+        "I love solving problems and building things through code. Programming isn't just my profession—it's my passion.",
     },
     skills: [
       "dotnet",
@@ -36,13 +33,14 @@ const NimishMadan = {
   },
   ContactMe: {
     contactMeFor:
-      "Whether you’re looking to build a new website, improve your existing platform, or bring a unique project to life, I’m here to help.",
+      "Whether you're looking to build a new website, improve your existing platform, or bring a unique project to life, I'm here to help.",
     email: "nimishmadan98@gmail.com",
   },
   Projects: [
     {
       icon: "",
       title: "Automotive Solutions",
+      role: "",
       description: `Currently spearheading the development of Serverless Microservices
 dedicated to automating Finance services within the context of the
 car purchasing process.
@@ -60,10 +58,12 @@ development and optimization.
       `,
       techstack: ["dotnet"],
       link: "",
+      githubUrl: "",
     },
     {
       icon: "",
       title: "Security and Access Management",
+      role: "",
       description: `Developed and maintained .Net Core REST APIs integral to the
 management of security and access within both commercial and
 residential buildings.
@@ -78,6 +78,7 @@ safety protocols, demonstrating adaptability and a keen
 understanding of evolving requirements.`,
       techstack: ["dotnet"],
       link: "",
+      githubUrl: "",
     },
   ],
   WorkExperience: [
@@ -85,7 +86,12 @@ understanding of evolving requirements.`,
       image: "/nagarro_logo.jpeg",
       company: "Nagarro",
       title: "Associate Staff Engineer",
-      startMonth: "April", startYear: "2022", endMonth: "", endYear: "", isCurrentJob: true,
+      location: "India",
+      startMonth: "April",
+      startYear: "2022",
+      endMonth: "",
+      endYear: "",
+      isCurrentJob: true,
       description: `Demonstrated expertise in working extensively with the .Net Core and implementing REST APIs, showcasing a strong understanding of backend technologies and architecture.
 Engaged in the development of Python Serverless Microservices aimed at streamlining the car purchasing workow, contributing throughout the entire end-to-end product development lifecycle.
 Procient in working with Docker, Terraform, AWS, and adept at employing monitoring tools such as New Relic and Splunk for enhanced system performance`,
@@ -93,8 +99,13 @@ Procient in working with Docker, Terraform, AWS, and adept at employing monitori
     {
       image: "/globallogic_logo.jpeg",
       company: "Globallogic",
-      title: "Senior Software Engineer ",
-      startMonth: "October", startYear: "2019", endMonth: "April", endYear: "2022", isCurrentJob: false,
+      title: "Senior Software Engineer",
+      location: "India",
+      startMonth: "October",
+      startYear: "2019",
+      endMonth: "April",
+      endYear: "2022",
+      isCurrentJob: false,
       description: `Developed and maintained REST APIs utilizing the .Net Core, instrumental in controlling and managing access to residential and commercial buildings.
 Pioneered the creation of REST APIs from inception, specializing in overseeing access for visitors within a corporate setting.
 Engaged in the development of Windows applications tailored to retrieve and process records stored in Active Directory, leveraging the LDAP Protocol for seamless integration and data processing.`,

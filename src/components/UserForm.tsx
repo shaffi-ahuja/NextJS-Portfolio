@@ -1,57 +1,41 @@
 "use client";
-import React, { useState, useCallback, useEffect, useRef } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { PortfolioFormData, formDataToPortfolio } from "@/lib/schema";
 import { generateSlug } from "@/lib/storage";
+import { useFormArray } from "@/hooks/useFormArray";
+import { useSlugValidation } from "@/hooks/useSlugValidation";
+import { validateForm, scrollToFirstError } from "@/lib/formValidation";
+import {
+  FieldError,
+  SectionHeading,
+  Toggle,
+  SlugIndicator,
+  SkillMultiSelect,
+} from "./FormComponents";
+import {
+  ProjectForm,
+  WorkForm,
+  EducationForm,
+  CertificationForm,
+} from "./FormSections";
 import AIAssistButton from "./ui/AIAssistButton";
 
-const SKILLS = [
-  "react",
-  "typescript",
-  "javascript",
-  "html",
-  "css",
-  "next",
-  "redux",
-  "mui",
-  "bootstrap",
-  "tailwind",
-  "figma",
-  "dotnet",
-  "cs",
-  "python",
-  "aws",
-  "docker",
-  "terraform",
-  "sqlite",
-  "git",
-  "angular",
-];
-
-const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
 const emptyProject = () => ({
+  icon: "",
   title: "",
+  role: "",
   description: "",
   techstack: [] as string[],
   link: "",
+  githubUrl: "",
 });
+
 const emptyWork = () => ({
+  image: "",
   company: "",
   title: "",
+  location: "",
   startMonth: "",
   startYear: "",
   endMonth: "",
@@ -59,6 +43,7 @@ const emptyWork = () => ({
   isCurrentJob: false,
   description: "",
 });
+
 const emptyEdu = () => ({
   type: "degree" as const,
   institutionName: "",
@@ -68,6 +53,7 @@ const emptyEdu = () => ({
   grade: "",
   location: "",
 });
+
 const emptyCert = () => ({
   name: "",
   organization: "",
@@ -84,128 +70,10 @@ const defaultSections = () => ({
   buildSection: { showInPortfolio: true },
 });
 
-function FieldError({ msg }: { msg?: string }) {
-  if (!msg) return null;
-  return <p className="text-red-500 text-sm mt-1">{msg}</p>;
-}
-
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return (
-    <h3 className="text-lg font-semibold mt-8 mb-2 border-b border-zinc-300 dark:border-zinc-700 pb-2">
-      {children}
-    </h3>
-  );
-}
-
-// Toggle switch shared component
-function Toggle({
-  checked,
-  onChange,
-  label,
-}: {
-  checked: boolean;
-  onChange: () => void;
-  label: string;
-}) {
-  return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={checked}
-      aria-label={label}
-      onClick={onChange}
-      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${checked ? "bg-zinc-800 dark:bg-zinc-200" : "bg-zinc-300 dark:bg-zinc-600"}`}
-    >
-      <span
-        className={`inline-block h-4 w-4 transform rounded-full bg-white dark:bg-black shadow transition-transform ${checked ? "translate-x-6" : "translate-x-1"}`}
-      />
-    </button>
-  );
-}
-
-type SlugStatus = "idle" | "checking" | "available" | "taken" | "invalid";
-
-function SlugIndicator({ status }: { status: SlugStatus }) {
-  if (status === "idle") return null;
-  const map: Record<SlugStatus, { color: string; text: string }> = {
-    idle: { color: "", text: "" },
-    checking: { color: "text-zinc-400", text: "⏳ Checking..." },
-    available: { color: "text-green-500", text: "✓ Available" },
-    taken: {
-      color: "text-red-500",
-      text: "✗ Already taken — choose a different URL",
-    },
-    invalid: {
-      color: "text-yellow-500",
-      text: "⚠ Only lowercase letters, numbers, hyphens (min 3 chars)",
-    },
-  };
-  const { color, text } = map[status];
-  return <p className={`text-sm mt-1 ${color}`}>{text}</p>;
-}
-
-function SkillMultiSelect({
-  selected,
-  onChange,
-}: {
-  selected: string[];
-  onChange: (s: string[]) => void;
-}) {
-  const [open, setOpen] = useState(false);
-  const toggle = (skill: string) =>
-    onChange(
-      selected.includes(skill)
-        ? selected.filter((s) => s !== skill)
-        : [...selected, skill],
-    );
-  return (
-    <div className="relative w-full">
-      <div
-        onClick={() => setOpen(!open)}
-        className="input flex justify-between items-center capitalize cursor-pointer"
-      >
-        <span className="truncate">
-          {selected.length > 0 ? selected.join(", ") : "Select skills"}
-        </span>
-        <svg
-          className={`w-5 h-5 flex-shrink-0 ml-2 transition-transform ${open ? "rotate-180" : ""}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </div>
-      {open && (
-        <ul className="absolute z-10 w-full mt-1 rounded-lg shadow-lg max-h-48 overflow-y-auto dark:bg-zinc-900 bg-zinc-200 border border-zinc-300 dark:border-zinc-700">
-          {SKILLS.map((skill) => (
-            <li
-              key={skill}
-              onClick={() => toggle(skill)}
-              className={`px-4 py-3 cursor-pointer capitalize flex items-center gap-2 dark:hover:bg-zinc-700 hover:bg-zinc-300 ${selected.includes(skill) ? "dark:bg-zinc-700 bg-zinc-300" : ""}`}
-            >
-              <input
-                type="checkbox"
-                readOnly
-                checked={selected.includes(skill)}
-                className="mr-1"
-              />
-              {skill}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
-
 export default function UserForm() {
   const router = useRouter();
+
+  // Core form state
   const [form, setForm] = useState<PortfolioFormData>({
     profileImage: "",
     phone: "",
@@ -232,201 +100,109 @@ export default function UserForm() {
     leetcode: "",
     sections: defaultSections(),
   });
+
+  // UI state
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [slugStatus, setSlugStatus] = useState<SlugStatus>("idle");
+  const { slug, status: slugStatus, checkSlug } = useSlugValidation();
   const [pending, setPending] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const slugDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [streamingMap, setStreamingMap] = useState<Record<string, string>>({});
   const [loadingMap, setLoadingMap] = useState<Record<string, boolean>>({});
 
-  const streamText = async (
-    key: string,
-    fullText: string,
-    onComplete?: (text: string) => void,
-  ) => {
-    setLoadingMap((prev) => ({ ...prev, [key]: true }));
-    setStreamingMap((prev) => ({ ...prev, [key]: "" }));
+  const streamText = useCallback(
+    async (
+      key: string,
+      fullText: string,
+      onComplete?: (text: string) => void,
+    ) => {
+      setLoadingMap((prev) => ({ ...prev, [key]: true }));
+      setStreamingMap((prev) => ({ ...prev, [key]: "" }));
 
-    for (let i = 0; i < fullText.length; i++) {
-      await new Promise((r) => setTimeout(r, 10));
+      for (let i = 0; i < fullText.length; i++) {
+        await new Promise((r) => setTimeout(r, 10));
+        setStreamingMap((prev) => ({
+          ...prev,
+          [key]: (prev[key] || "") + fullText[i],
+        }));
+      }
 
-      setStreamingMap((prev) => ({
-        ...prev,
-        [key]: (prev[key] || "") + fullText[i],
-      }));
-    }
-
-    setLoadingMap((prev) => ({ ...prev, [key]: false }));
-
-    if (onComplete) onComplete(fullText);
-  };
+      setLoadingMap((prev) => ({ ...prev, [key]: false }));
+      if (onComplete) onComplete(fullText);
+    },
+    [],
+  );
 
   useEffect(() => {
     if (form.firstName && form.lastName && !form.slug) {
-      setForm((f) => ({ ...f, slug: generateSlug(f.firstName, f.lastName) }));
+      const newSlug = generateSlug(form.firstName, form.lastName);
+      setForm((f) => ({ ...f, slug: newSlug }));
+      checkSlug(newSlug);
     }
-  }, [form.firstName, form.lastName]);
+  }, [form.firstName, form.lastName, checkSlug]);
+
+  // Sync slug changes to validation hook
+  useEffect(() => {
+    setForm((f) => ({ ...f, slug }));
+  }, [slug]);
+
+  // Form array management using custom hook
+  const projects = useFormArray<typeof form.projects[0]>(form.projects);
+  const workExperiences = useFormArray<typeof form.workExperiences[0]>(form.workExperiences);
+  const educations = useFormArray<typeof form.education[0]>(form.education);
+  const certifications = useFormArray<typeof form.certifications[0]>(form.certifications);
+
+  // Sync array state with main form
+  useEffect(() => {
+    setForm((f) => ({ ...f, projects: projects.items }));
+  }, [projects.items]);
 
   useEffect(() => {
-    if (!form.slug) {
-      setSlugStatus("idle");
-      return;
-    }
-    const valid = /^[a-z0-9-]{3,40}$/.test(form.slug);
-    if (!valid) {
-      setSlugStatus("invalid");
-      return;
-    }
-    setSlugStatus("checking");
-    if (slugDebounceRef.current) clearTimeout(slugDebounceRef.current);
-    slugDebounceRef.current = setTimeout(async () => {
-      try {
-        const res = await fetch(`/api/portfolio/check-slug?slug=${form.slug}`);
-        const data = await res.json();
-        setSlugStatus(data.available ? "available" : "taken");
-      } catch {
-        setSlugStatus("idle");
-      }
-    }, 500);
-    return () => {
-      if (slugDebounceRef.current) clearTimeout(slugDebounceRef.current);
-    };
-  }, [form.slug]);
+    setForm((f) => ({ ...f, workExperiences: workExperiences.items }));
+  }, [workExperiences.items]);
 
-  const set = (field: keyof PortfolioFormData, value: unknown) => {
+  useEffect(() => {
+    setForm((f) => ({ ...f, education: educations.items }));
+  }, [educations.items]);
+
+  useEffect(() => {
+    setForm((f) => ({ ...f, certifications: certifications.items }));
+  }, [certifications.items]);
+
+  const set = useCallback((field: keyof PortfolioFormData, value: unknown) => {
     setForm((f) => ({ ...f, [field]: value }));
     setErrors((e) => ({ ...e, [field]: "" }));
-  };
+  }, []);
 
-  // Section toggle helper
-  const toggleSection = (
-    key: keyof typeof form.sections,
-    subKey: "showInResume" | "showInPortfolio",
-  ) => {
-    setForm((f) => ({
-      ...f,
-      sections: {
-        ...f.sections,
-        [key]: {
-          ...(f.sections[key] as any),
-          [subKey]: !(f.sections[key] as any)[subKey],
+  const toggleSection = useCallback(
+    (
+      key: keyof typeof form.sections,
+      subKey: "showInResume" | "showInPortfolio",
+    ) => {
+      setForm((f) => ({
+        ...f,
+        sections: {
+          ...f.sections,
+          [key]: {
+            ...(f.sections[key] as any),
+            [subKey]: !(f.sections[key] as any)[subKey],
+          },
         },
-      },
-    }));
-  };
-
-  // Projects
-  const updateProject = (i: number, field: string, value: unknown) => {
-    const updated = [...form.projects];
-    updated[i] = { ...updated[i], [field]: value };
-    setForm((f) => ({ ...f, projects: updated }));
-  };
-  const addProject = () =>
-    setForm((f) => ({ ...f, projects: [...f.projects, emptyProject()] }));
-  const removeProject = (i: number) =>
-    setForm((f) => ({
-      ...f,
-      projects: f.projects.filter((_, idx) => idx !== i),
-    }));
-
-  // Work
-  const updateWork = (i: number, field: string, value: string | boolean) => {
-    const updated = [...form.workExperiences];
-    updated[i] = { ...updated[i], [field]: value };
-    setForm((f) => ({ ...f, workExperiences: updated }));
-  };
-  const addWork = () =>
-    setForm((f) => ({
-      ...f,
-      workExperiences: [...f.workExperiences, emptyWork()],
-    }));
-  const removeWork = (i: number) =>
-    setForm((f) => ({
-      ...f,
-      workExperiences: f.workExperiences.filter((_, idx) => idx !== i),
-    }));
-
-  // Education
-  const updateEdu = (i: number, field: string, value: string) => {
-    const updated = [...form.education];
-    updated[i] = { ...updated[i], [field]: value };
-    setForm((f) => ({ ...f, education: updated }));
-  };
-  const addEdu = () =>
-    setForm((f) => ({ ...f, education: [...f.education, emptyEdu()] }));
-  const removeEdu = (i: number) =>
-    setForm((f) => ({
-      ...f,
-      education: f.education.filter((_, idx) => idx !== i),
-    }));
-
-  // Certifications
-  const updateCert = (i: number, field: string, value: string) => {
-    const updated = [...form.certifications];
-    updated[i] = { ...updated[i], [field]: value };
-    setForm((f) => ({ ...f, certifications: updated }));
-  };
-  const addCert = () =>
-    setForm((f) => ({
-      ...f,
-      certifications: [...f.certifications, emptyCert()],
-    }));
-  const removeCert = (i: number) =>
-    setForm((f) => ({
-      ...f,
-      certifications: f.certifications.filter((_, idx) => idx !== i),
-    }));
+      }));
+    },
+    [],
+  );
 
   const validate = useCallback((): boolean => {
-    const e: Record<string, string> = {};
-    if (!form.firstName.trim()) e.firstName = "First name is required";
-    if (!form.lastName.trim()) e.lastName = "Last name is required";
-    if (!form.slug || !/^[a-z0-9-]{3,40}$/.test(form.slug))
-      e.slug = "Invalid slug format";
-    if (slugStatus === "taken") e.slug = "This URL is already taken";
-    if (!form.oneLinerIntro || form.oneLinerIntro.length < 10)
-      e.oneLinerIntro = "Intro must be at least 10 characters";
-    if (!form.experienceSummary || form.experienceSummary.length < 20)
-      e.experienceSummary = "Summary must be at least 20 characters";
-    if (!form.locatedAt.trim()) e.locatedAt = "Location is required";
-    if (!form.timeZone.trim()) e.timeZone = "Timezone is required";
-    if (!form.passionTitle.trim()) e.passionTitle = "Passion title is required";
-    if (!form.passionDescription || form.passionDescription.length < 20)
-      e.passionDescription = "Description must be at least 20 characters";
-    if (form.skills.length === 0) e.skills = "Select at least one skill";
-    if (!form.email || !/\S+@\S+\.\S+/.test(form.email))
-      e.email = "Valid email is required";
-    if (!form.contactMeFor || form.contactMeFor.length < 10)
-      e.contactMeFor = "Contact description required";
-    form.workExperiences.forEach((w, i) => {
-      if (!w.company.trim()) e[`work_company_${i}`] = "Company is required";
-      if (!w.title.trim()) e[`work_title_${i}`] = "Job title is required";
-      if (!w.startYear.trim()) e[`work_start_${i}`] = "Start year is required";
-      if (!w.description.trim())
-        e[`work_desc_${i}`] = "Description is required";
-    });
-    form.education.forEach((edu, i) => {
-      if (!edu.institutionName.trim())
-        e[`edu_name_${i}`] = "Institution name is required";
-    });
-    form.certifications.forEach((cert, i) => {
-      if (!cert.name.trim())
-        e[`cert_name_${i}`] = "Certification name is required";
-      if (!cert.organization.trim())
-        e[`cert_org_${i}`] = "Organization is required";
-    });
-    setErrors(e);
-    return Object.keys(e).length === 0;
+    const formErrors = validateForm(form, slugStatus);
+    setErrors(formErrors);
+    return Object.keys(formErrors).length === 0;
   }, [form, slugStatus]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitError("");
     if (!validate()) {
-      document
-        .querySelector('[data-error="true"]')
-        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+      scrollToFirstError();
       return;
     }
     setPending(true);
@@ -459,7 +235,7 @@ export default function UserForm() {
       <p className="text-zinc-500 mb-6">
         Fill in the form below. Your portfolio will be live at{" "}
         <span className="font-mono dark:text-white text-black">
-          /user/{form.slug || "your-slug"}
+          /user/{slug || "your-slug"}
         </span>
       </p>
 
@@ -598,19 +374,14 @@ export default function UserForm() {
           <label htmlFor="slug">
             Portfolio URL *{" "}
             <span className="text-zinc-500 font-normal text-sm">
-              — /user/<strong>{form.slug || "your-slug"}</strong>
+              — /user/<strong>{slug || "your-slug"}</strong>
             </span>
           </label>
           <input
             id="slug"
             className="input font-mono"
-            value={form.slug}
-            onChange={(e) =>
-              set(
-                "slug",
-                e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""),
-              )
-            }
+            value={slug}
+            onChange={(e) => checkSlug(e.target.value)}
             placeholder="shaffiahuja"
             data-error={!!errors.slug}
           />
@@ -776,96 +547,28 @@ export default function UserForm() {
 
         {/* ── Projects ── */}
         <SectionHeading>Projects (optional)</SectionHeading>
-        {form.projects.map((project, i) => {
+        {projects.items.map((project, i) => {
           const projectKey = `project-${i}`;
           const isProjectDescStreaming = loadingMap[projectKey];
           const streamProjectDescValue = streamingMap[projectKey];
           return (
-            <div
+            <ProjectForm
               key={i}
-              className="border border-zinc-300 dark:border-zinc-700 rounded-md p-4 mt-4"
-            >
-              <div className="flex justify-between items-center mb-2">
-                <p className="font-semibold">Project {i + 1}</p>
-                {form.projects.length > 1 && (
-                  <button
-                    type="button"
-                    onClick={() => removeProject(i)}
-                    className="text-red-500 text-sm hover:underline"
-                  >
-                    Remove
-                  </button>
-                )}
-              </div>
-              <div className="input-div">
-                <label>Project title</label>
-                <input
-                  className="input"
-                  value={project.title}
-                  onChange={(e) => updateProject(i, "title", e.target.value)}
-                  placeholder="Portfolio Builder — Multi-Tenant SaaS"
-                />
-              </div>
-              <div className="input-div">
-                <label>Description</label>
-                <textarea
-                  className="input"
-                  rows={4}
-                  value={
-                    isProjectDescStreaming
-                      ? streamProjectDescValue + "▌"
-                      : project.description
-                  }
-                  onChange={(e) =>
-                    updateProject(i, "description", e.target.value)
-                  }
-                  placeholder="What did you build and why does it matter..."
-                  disabled={isProjectDescStreaming}
-                />
-                <AIAssistButton
-                  label={
-                    loadingMap[projectKey]
-                      ? "Writing..."
-                      : "Improve this description"
-                  }
-                  disabled={
-                    !project.description.trim() || loadingMap[projectKey]
-                  }
-                  onResult={(text) => {
-                    updateProject(i, "description", text);
-                    streamText(projectKey, text);
-                  }}
-                  buildRequest={() => ({
-                    action: "improve_description",
-                    text: project.description,
-                    context: project.title
-                      ? `Project: ${project.title}`
-                      : "Personal project",
-                  })}
-                />
-              </div>
-              <div className="input-div">
-                <label>Tech stack</label>
-                <SkillMultiSelect
-                  selected={project.techstack}
-                  onChange={(s) => updateProject(i, "techstack", s)}
-                />
-              </div>
-              <div className="input-div">
-                <label>Live URL</label>
-                <input
-                  className="input"
-                  value={project.link}
-                  onChange={(e) => updateProject(i, "link", e.target.value)}
-                  placeholder="https://yourproject.vercel.app"
-                />
-              </div>
-            </div>
+              index={i}
+              project={project}
+              errors={errors}
+              isStreaming={isProjectDescStreaming}
+              streamValue={streamProjectDescValue}
+              onUpdate={(field, value) => projects.update(i, field, value)}
+              onRemove={() => projects.remove(i)}
+              onStream={(text) => streamText(projectKey, text)}
+              canRemove={projects.items.length > 1}
+            />
           );
         })}
         <button
           type="button"
-          onClick={addProject}
+          onClick={() => projects.add(emptyProject())}
           className="mt-4 text-sm border border-zinc-400 px-4 py-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800"
         >
           + Add another project
@@ -873,157 +576,31 @@ export default function UserForm() {
 
         {/* ── Work Experience ── */}
         <SectionHeading>Work experience *</SectionHeading>
-        {form.workExperiences.map((work, i) => {
+        {workExperiences.items.map((work, i) => {
           const workKey = `work-${i}`;
           const isStreaming = loadingMap[workKey];
           const streamValue = streamingMap[workKey];
           return (
-            <div
+            <WorkForm
               key={i}
-              className="border border-zinc-300 dark:border-zinc-700 rounded-md p-4 mt-4"
-            >
-              <div className="flex justify-between items-center mb-2">
-                <p className="font-semibold">Position {i + 1}</p>
-                {form.workExperiences.length > 1 && (
-                  <button
-                    type="button"
-                    onClick={() => removeWork(i)}
-                    className="text-red-500 text-sm hover:underline"
-                  >
-                    Remove
-                  </button>
-                )}
-              </div>
-              <div className="input-div">
-                <label>Company *</label>
-                <input
-                  className="input"
-                  value={work.company}
-                  onChange={(e) => updateWork(i, "company", e.target.value)}
-                  placeholder="Publicis Re:Sources"
-                  data-error={!!errors[`work_company_${i}`]}
-                />
-                <FieldError msg={errors[`work_company_${i}`]} />
-              </div>
-              <div className="input-div">
-                <label>Job title *</label>
-                <input
-                  className="input"
-                  value={work.title}
-                  onChange={(e) => updateWork(i, "title", e.target.value)}
-                  placeholder="Senior Frontend Engineer"
-                  data-error={!!errors[`work_title_${i}`]}
-                />
-                <FieldError msg={errors[`work_title_${i}`]} />
-              </div>
-              <div className="input-div">
-                <label>Start date *</label>
-                <div className="flex gap-3 mt-3">
-                  <select
-                    className="input flex-1"
-                    value={work.startMonth}
-                    onChange={(e) =>
-                      updateWork(i, "startMonth", e.target.value)
-                    }
-                    aria-label="Start month"
-                  >
-                    <option value="">Month</option>
-                    {MONTHS.map((m) => (
-                      <option key={m} value={m}>
-                        {m}
-                      </option>
-                    ))}
-                  </select>
-                  <input
-                    className="input flex-1"
-                    value={work.startYear}
-                    onChange={(e) => updateWork(i, "startYear", e.target.value)}
-                    placeholder="2022"
-                    aria-label="Start year"
-                    data-error={!!errors[`work_start_${i}`]}
-                  />
-                </div>
-                <FieldError msg={errors[`work_start_${i}`]} />
-              </div>
-              <div className="input-div">
-                <div className="flex items-center justify-between mt-3">
-                  <label className="text-sm font-medium">
-                    I currently work here
-                  </label>
-                  <Toggle
-                    checked={work.isCurrentJob}
-                    onChange={() =>
-                      updateWork(i, "isCurrentJob", !work.isCurrentJob)
-                    }
-                    label="Toggle current job"
-                  />
-                </div>
-              </div>
-              {!work.isCurrentJob && (
-                <div className="input-div">
-                  <label>End date</label>
-                  <div className="flex gap-3 mt-3">
-                    <select
-                      className="input flex-1"
-                      value={work.endMonth}
-                      onChange={(e) =>
-                        updateWork(i, "endMonth", e.target.value)
-                      }
-                      aria-label="End month"
-                    >
-                      <option value="">Month</option>
-                      {MONTHS.map((m) => (
-                        <option key={m} value={m}>
-                          {m}
-                        </option>
-                      ))}
-                    </select>
-                    <input
-                      className="input flex-1"
-                      value={work.endYear}
-                      onChange={(e) => updateWork(i, "endYear", e.target.value)}
-                      placeholder="2024"
-                      aria-label="End year"
-                    />
-                  </div>
-                </div>
-              )}
-              <div className="input-div">
-                <label>What did you accomplish? *</label>
-                <textarea
-                  className="input"
-                  rows={4}
-                  value={isStreaming ? streamValue + "▌" : work.description}
-                  onChange={(e) => updateWork(i, "description", e.target.value)}
-                  placeholder="Lead with impact — what did you build, improve, or ship?"
-                  data-error={!!errors[`work_desc_${i}`]}
-                  disabled={isStreaming}
-                />
-                <AIAssistButton
-                  label={
-                    loadingMap[workKey]
-                      ? "Writing..."
-                      : "Improve this description"
-                  }
-                  disabled={!work.description.trim() || loadingMap[workKey]}
-                  onResult={(text) => {
-                    updateWork(i, "description", text);
-                    streamText(workKey, text);
-                  }}
-                  buildRequest={() => ({
-                    action: "improve_description",
-                    text: work.description,
-                    context: `${work.title} at ${work.company}`,
-                  })}
-                />
-                <FieldError msg={errors[`work_desc_${i}`]} />
-              </div>
-            </div>
+              index={i}
+              work={work}
+              errors={errors}
+              isStreaming={isStreaming}
+              streamValue={streamValue}
+              onUpdate={(field, value) => workExperiences.update(i, field, value)}
+              onRemove={() => workExperiences.remove(i)}
+              onStream={(text) => streamText(workKey, text)}
+              onToggleCurrentJob={() =>
+                workExperiences.update(i, "isCurrentJob", !work.isCurrentJob)
+              }
+              canRemove={workExperiences.items.length > 1}
+            />
           );
         })}
         <button
           type="button"
-          onClick={addWork}
+          onClick={() => workExperiences.add(emptyWork())}
           className="mt-4 text-sm border border-zinc-400 px-4 py-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800"
         >
           + Add another position
@@ -1031,101 +608,19 @@ export default function UserForm() {
 
         {/* ── Education ── */}
         <SectionHeading>Education (optional)</SectionHeading>
-        {form.education.map((edu, i) => (
-          <div
+        {educations.items.map((edu, i) => (
+          <EducationForm
             key={i}
-            className="border border-zinc-300 dark:border-zinc-700 rounded-md p-4 mt-4"
-          >
-            <div className="flex justify-between items-center mb-2">
-              <p className="font-semibold">Education {i + 1}</p>
-              <button
-                type="button"
-                onClick={() => removeEdu(i)}
-                className="text-red-500 text-sm hover:underline"
-              >
-                Remove
-              </button>
-            </div>
-            <div className="input-div">
-              <label>Type</label>
-              <select
-                className="input"
-                value={edu.type}
-                onChange={(e) => updateEdu(i, "type", e.target.value)}
-              >
-                <option value="degree">
-                  Degree (B.Tech / B.Sc / MBA etc.)
-                </option>
-                <option value="12th">Class XII / 12th</option>
-                <option value="10th">Class X / 10th</option>
-                <option value="diploma">Diploma</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div className="input-div">
-              <label>Institution name *</label>
-              <input
-                className="input"
-                value={edu.institutionName}
-                onChange={(e) =>
-                  updateEdu(i, "institutionName", e.target.value)
-                }
-                placeholder="IIT Delhi / Your School Name"
-                data-error={!!errors[`edu_name_${i}`]}
-              />
-              <FieldError msg={errors[`edu_name_${i}`]} />
-            </div>
-            <div className="input-div">
-              <label>Field of study / Degree name</label>
-              <input
-                className="input"
-                value={edu.fieldOfStudy}
-                onChange={(e) => updateEdu(i, "fieldOfStudy", e.target.value)}
-                placeholder="Bachelor of Technology — Computer Science"
-              />
-            </div>
-            <div className="input-div">
-              <label>Years</label>
-              <div className="flex gap-3 mt-3">
-                <input
-                  className="input flex-1"
-                  value={edu.startYear}
-                  onChange={(e) => updateEdu(i, "startYear", e.target.value)}
-                  placeholder="2015"
-                  aria-label="Start year"
-                />
-                <input
-                  className="input flex-1"
-                  value={edu.endYear}
-                  onChange={(e) => updateEdu(i, "endYear", e.target.value)}
-                  placeholder="2019"
-                  aria-label="End year"
-                />
-              </div>
-            </div>
-            <div className="input-div">
-              <label>Grade / CGPA / Percentage</label>
-              <input
-                className="input"
-                value={edu.grade}
-                onChange={(e) => updateEdu(i, "grade", e.target.value)}
-                placeholder="8.5 CGPA / 85%"
-              />
-            </div>
-            <div className="input-div">
-              <label>Location</label>
-              <input
-                className="input"
-                value={edu.location}
-                onChange={(e) => updateEdu(i, "location", e.target.value)}
-                placeholder="New Delhi, India"
-              />
-            </div>
-          </div>
+            index={i}
+            education={edu}
+            errors={errors}
+            onUpdate={(field, value) => educations.update(i, field, value)}
+            onRemove={() => educations.remove(i)}
+          />
         ))}
         <button
           type="button"
-          onClick={addEdu}
+          onClick={() => educations.add(emptyEdu())}
           className="mt-4 text-sm border border-zinc-400 px-4 py-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800"
         >
           + Add education
@@ -1133,66 +628,19 @@ export default function UserForm() {
 
         {/* ── Certifications ── */}
         <SectionHeading>Certifications (optional)</SectionHeading>
-        {form.certifications.map((cert, i) => (
-          <div
+        {certifications.items.map((cert, i) => (
+          <CertificationForm
             key={i}
-            className="border border-zinc-300 dark:border-zinc-700 rounded-md p-4 mt-4"
-          >
-            <div className="flex justify-between items-center mb-2">
-              <p className="font-semibold">Certification {i + 1}</p>
-              <button
-                type="button"
-                onClick={() => removeCert(i)}
-                className="text-red-500 text-sm hover:underline"
-              >
-                Remove
-              </button>
-            </div>
-            <div className="input-div">
-              <label>Certification name *</label>
-              <input
-                className="input"
-                value={cert.name}
-                onChange={(e) => updateCert(i, "name", e.target.value)}
-                placeholder="React — The Complete Guide"
-                data-error={!!errors[`cert_name_${i}`]}
-              />
-              <FieldError msg={errors[`cert_name_${i}`]} />
-            </div>
-            <div className="input-div">
-              <label>Issuing organization *</label>
-              <input
-                className="input"
-                value={cert.organization}
-                onChange={(e) => updateCert(i, "organization", e.target.value)}
-                placeholder="Udemy / Coursera / Google"
-                data-error={!!errors[`cert_org_${i}`]}
-              />
-              <FieldError msg={errors[`cert_org_${i}`]} />
-            </div>
-            <div className="input-div">
-              <label>Date</label>
-              <input
-                className="input"
-                value={cert.date}
-                onChange={(e) => updateCert(i, "date", e.target.value)}
-                placeholder="2023"
-              />
-            </div>
-            <div className="input-div">
-              <label>Credential URL</label>
-              <input
-                className="input"
-                value={cert.credentialUrl}
-                onChange={(e) => updateCert(i, "credentialUrl", e.target.value)}
-                placeholder="https://coursera.org/verify/..."
-              />
-            </div>
-          </div>
+            index={i}
+            certification={cert}
+            errors={errors}
+            onUpdate={(field, value) => certifications.update(i, field, value)}
+            onRemove={() => certifications.remove(i)}
+          />
         ))}
         <button
           type="button"
-          onClick={addCert}
+          onClick={() => certifications.add(emptyCert())}
           className="mt-4 text-sm border border-zinc-400 px-4 py-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800"
         >
           + Add certification
